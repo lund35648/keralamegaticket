@@ -131,6 +131,9 @@
         button.primary { background: linear-gradient(90deg,var(--accent),var(--accent-dark)); color:#fff; border:none; font-weight:700; cursor:pointer; font-size:14px; border-radius:10px; padding:10px; }
         button.primary:disabled { opacity:.5; cursor:not-allowed; }
 
+        /* Hide the two green calculation boxes visually while keeping the underlying logic intact */
+        #ticketAmount, #breakdown { display: none !important; }
+
         /* Modal */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:1000; padding:12px; }
         .modalBox { background:#fff; width:100%; max-width:420px; border-radius:12px; padding:16px; }
@@ -228,9 +231,9 @@
         .feedback-track {
             display:flex;
             padding:18px 20px;
-            animation:scroll 40s linear infinite;
             gap:18px;
             align-items:flex-start;
+            /* animation is set dynamically by JS for correct duration */
         }
         .feedback-card {
             min-width:320px;
@@ -242,6 +245,7 @@
             box-shadow:0 5px 15px rgba(0,0,0,.06);
             border-top:4px solid var(--secondary);
             position:relative;
+            flex-shrink:0;
         }
         .winner-badge { position:absolute; top:-10px; right:12px; background:var(--accent2); color:#fff; padding:4px 10px; border-radius:12px; font-size:11px; font-weight:700; }
         .user-info { display:flex; align-items:center; margin-bottom:10px; gap:12px; }
@@ -261,9 +265,12 @@
 
         /* ensure feedback track doesn't overflow on small screens */
         @media (max-width:640px) {
-            .feedback-track { padding:12px; gap:12px; animation-duration: 28s; }
+            .feedback-track { padding:12px; gap:12px; }
             .feedback-card { min-width:280px; max-width:290px; padding:12px; }
         }
+
+        /* performance hint for smooth GPU transform */
+        .feedback-track { will-change: transform; backface-visibility: hidden; }
     </style>
 </head>
 <body>
@@ -657,6 +664,7 @@
      let freeTickets = [];
      if(paid >= MIN_TICKETS){
        amount.value="₹ "+price;
+       // ticketAmount and breakdown are hidden visually by CSS but logic still computes and stores values
        ticketAmount.textContent=`💰 Total Amount: ₹ ${price} (for ${paid} paid + ${free} free)`;
        freeTickets = generateFreeTickets(free, sel);
        freeList.innerHTML="";
@@ -740,7 +748,7 @@
 </script>
 
 <script>
-    // Check Winner Script
+    // Check Winner Script (unchanged core logic - placeholders kept)
     function updateDateTime() {
         const now = new Date();
         const options = {
@@ -783,59 +791,106 @@
     }, 1000);
 
     function showResults() {
-        const lotteryId = document.getElementById('lotteryId').value;
+        const lotteryId = document.getElementById('lotteryId') && document.getElementById('lotteryId').value;
         const resultDiv = document.getElementById('result');
 
-        if (!lotteryId.trim()) {
+        if (!lotteryId || !lotteryId.trim()) {
             alert('Please enter a valid Lottery ID');
             return;
         }
 
-        resultDiv.style.display = 'block';
+        if (resultDiv) resultDiv.style.display = 'block';
     }
 </script>
 
 <script>
-    // Feedback Script
-    const track=document.querySelector('.feedback-track');
+    // Improved Feedback Script: seamless duplicate + dynamic duration + hover/user pause handling
+    const track = document.querySelector('.feedback-track');
     let isPlaying=true;
-
+    let userPaused=false;
     function pauseAnimation(){
-    if(track) track.style.animationPlayState='paused';
-    isPlaying=false;
+      if(track) track.style.animationPlayState='paused';
+      isPlaying=false;
+      userPaused=true;
     }
     function playAnimation(){
-    if(track) track.style.animationPlayState='running';
-    isPlaying=true;
+      if(track) track.style.animationPlayState='running';
+      isPlaying=true;
+      userPaused=false;
     }
 
+    // Temporary hover pause (respects user pause)
     if(track){
-      track.addEventListener('mouseenter',()=>{if(isPlaying)pauseAnimation()});
-      track.addEventListener('mouseleave',()=>{if(!isPlaying)playAnimation()});
+      track.addEventListener('mouseenter', ()=>{
+        // pause on hover but remember user state
+        if(isPlaying){
+          track.style.animationPlayState='paused';
+          track.dataset.hoverPaused = 'true';
+        }
+      });
+      track.addEventListener('mouseleave', ()=>{
+        if(track.dataset.hoverPaused === 'true'){
+          // only resume if not user-paused
+          if(!userPaused) track.style.animationPlayState='running';
+          delete track.dataset.hoverPaused;
+        }
+      });
     }
 
     function randomTimestamp(){
-    const m=Math.floor(Math.random()*300);
-    if(m<60)return m+" min ago";
-    if(m<1440)return Math.floor(m/60)+" hrs ago";
-    return new Date().toLocaleDateString('en-IN');
+      const m=Math.floor(Math.random()*300);
+      if(m<60)return m+" min ago";
+      if(m<1440)return Math.floor(m/60)+" hrs ago";
+      return new Date().toLocaleDateString('en-IN');
     }
 
     function updateTimestamps(){
-    document.querySelectorAll('.timestamp').forEach(ts=>{
-      ts.textContent=randomTimestamp();
-    });
+      document.querySelectorAll('.timestamp').forEach(ts=>{
+        ts.textContent=randomTimestamp();
+      });
     }
 
-    function adjustWidth(){
-    const cards=document.querySelectorAll('.feedback-card');
-    if(track && cards.length){
-      // set width big enough to allow smooth scroll; keep safe value for responsiveness
-      track.style.width=(cards.length*340)+"px";
-    }
+    // Setup smooth scrolling: duplicate content for seamless loop, set animation duration dynamically (faster on wider content)
+    function setupScrolling(){
+      if(!track) return;
+      // capture original children to measure
+      const originalChildren = Array.from(track.children);
+      if(originalChildren.length === 0) return;
+      if(track.dataset.cloned === 'true') {
+        // already setup
+        return;
+      }
+
+      // measure total width of original items including margins
+      let total = 0;
+      originalChildren.forEach(card=>{
+        const style = getComputedStyle(card);
+        const mr = parseFloat(style.marginRight) || 0;
+        total += card.offsetWidth + mr;
+      });
+
+      // duplicate for seamless scroll
+      const originalHTML = track.innerHTML;
+      track.innerHTML = originalHTML + originalHTML;
+      track.dataset.cloned = 'true';
+
+      // compute duration: pxPerSec controls perceived speed (higher = faster)
+      const pxPerSec = 120; // tuned to be reasonably fast and smooth on mobile
+      let duration = Math.max(10, Math.min(60, Math.round(total / pxPerSec)));
+      // set animation using existing keyframes 'scroll'
+      track.style.animation = `scroll ${duration}s linear infinite`;
+      track.style.willChange = 'transform';
+
+      // respect prefers-reduced-motion
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if(mq.matches){
+        track.style.animationPlayState = 'paused';
+        isPlaying = false;
+      }
     }
 
-    adjustWidth();
+    // initialize
+    setupScrolling();
     updateTimestamps();
     setInterval(updateTimestamps,300000);
 </script>
