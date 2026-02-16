@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kerala Government Ticket</title>
 
     <!-- Meta Pixel Code -->
@@ -20,858 +20,587 @@
     </script>
     <noscript>
     <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=744008402087520&ev=PageView&noscript=1"/>
+         src="https://www.facebook.com/tr?id=744008402087520&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Meta Pixel Code -->
 
     <style>
-        /* Header Styles */
+        /* ---------------------------
+           Reset / Base / Layout
+           --------------------------- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html,body { height: 100%; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height: 1.35;
+        }
+
+        /* container that centers page content on desktop and gives padding on mobile */
+        .page-wrap {
+            max-width: 1100px;
+            margin: 16px auto;
+            padding: 12px;
+        }
+
+        /* ---------------------------
+           Header
+           --------------------------- */
         .header {
             background-color: #e2e7cd;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
-            width: 100%;
-            box-sizing: border-box;
-            flex-wrap: nowrap;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 8px;
+            gap: 12px;
             position: relative;
         }
         .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            max-height: 70px;
-            width: 100%;
-            overflow: hidden;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            flex: 1 1 auto;
+            min-width: 0;
         }
-        .header img {
-            height: 100%;
+        .logo-container img {
+            height: 60px;
             width: auto;
-            max-width: 100%;
             object-fit: contain;
         }
-        .header img.kerala-logo {
-            min-width: 150px;
-            max-width: 220px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .header img.g20-logo {
-            max-width: 120px;
-            margin-right: auto;
-        }
+        .logo-container img.kerala-logo { height: 64px; }
         .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            align-items: center;
-            flex-shrink: 0;
-            margin-left: auto;
-            margin-right: 20px;
+            display:flex;
+            gap:8px;
+            flex-shrink:0;
+            align-items:center;
         }
         .header button {
             background-color: #4CAF50;
             color: white;
             padding: 8px 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            text-align: center;
-            white-space: nowrap;
-            width: 100%;
-            box-sizing: border-box;
+            white-space:nowrap;
         }
-        .header button:hover {
-            background-color: #45a049;
-        }
-        @media (max-width: 768px) {
-            .header {
-                padding: 8px 10px;
-            }
-            .logo-container {
-                gap: 5px;
-                max-height: 50px;
-            }
-            .header img.kerala-logo {
-                min-width: 120px;
-                max-width: 180px;
-            }
-            .header img.g20-logo {
-                max-width: 85px;
-            }
-            .button-container {
-                gap: 5px;
-                margin-right: 15px;
-            }
-            .header button {
-                padding: 6px 10px;
-                font-size: 12px;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-container {
-                max-height: 40px;
-            }
-            .header img.kerala-logo {
-                min-width: 100px;
-                max-width: 140px;
-            }
-            .header img.g20-logo {
-                max-width: 80px;
-            }
-            .button-container {
-                margin-right: 10px;
-            }
-            .header button {
-                padding: 5px 8px;
-                font-size: 10px;
-            }
+        .header button:hover { background-color: #45a049; }
+
+        /* Make header stack on small screens */
+        @media (max-width: 540px) {
+            .header { flex-direction: column; align-items: center; gap:10px; padding:10px; }
+            .logo-container { justify-content: center; }
+            .logo-container img { height: 48px; }
+            .button-container { width: 100%; justify-content: center; gap: 10px; }
+            .header button { padding: 8px 10px; font-size: 13px; }
         }
 
-        /* Form Styles */
+        /* ---------------------------
+           Main small card (form)
+           --------------------------- */
         :root{--accent:#ff4f79;--accent-dark:#d9365d;--bg:#fff3f7;--card:#fff;}
-        body{margin:0;background:var(--bg);font-family:Arial,sans-serif;display:flex;justify-content:center;padding:8px;}
-        .container{width:100%;max-width:400px;background:var(--card);padding:14px;border-radius:14px;box-shadow:0 4px 8px rgba(0,0,0,.14);}
-        .topLogo img{width:130px;display:block;margin:0 auto 4px;}
-        .livePop{display:inline-block;padding:6px 14px;border-radius:20px;background:linear-gradient(90deg,#2ecc71,#27ae60);color:#fff;font-size:12px;font-weight:bold;animation:pulse 1.2s infinite;}
-        @keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
-        .timerBar{background:#e8f5e9;color:#1b5e20;padding:6px;border-radius:8px;font-size:12px;text-align:center;font-weight:bold;margin-bottom:6px;}
-        h2{text-align:center;margin:6px 0;color:#d9365d;font-size:18px;}
-        input,select,button{width:100%;padding:9px;margin-bottom:8px;border-radius:8px;border:1px solid #ddd;font-size:13px;}
-        .ticketBox{border:2px dashed #ff4f79;border-radius:12px;padding:10px;margin-bottom:8px;}
-        .ticketAmount{background:#e8f5e9;color:#1b5e20;padding:6px;border-radius:8px;text-align:center;font-weight:bold;margin-bottom:6px;font-size:13px;}
-        .ticketTitle{font-weight:bold;color:#d9365d;margin-bottom:4px;font-size:13px;}
-        select[multiple]{height:55px;}
-        .counter{font-size:11px;margin-top:3px;}
-        .selectedList{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
-        .chip{background:#ffe3ea;color:#d9365d;padding:3px 7px;border-radius:10px;font-size:11px;display:flex;align-items:center;gap:5px;}
-        .chip span{cursor:pointer;font-weight:bold;}
-        button{background:linear-gradient(90deg,var(--accent),var(--accent-dark));color:#fff;border:none;font-weight:bold;cursor:pointer;font-size:14px;}
-        button:disabled{opacity:.5;cursor:not-allowed;}
-        .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;}
-        .modalBox{background:#fff;width:92%;max-width:360px;border-radius:14px;padding:16px;}
-        .modalBox h3{text-align:center;color:#d9365d;margin:0 0 10px;}
-        .summary{font-size:13px;line-height:1.6;}
-        .modalBtns{display:flex;gap:10px;margin-top:12px;}
-        .modalBtns button{flex:1;}
-        .cancelBtn{background:#ccc;color:#333;}
-
-        /* Slideshow Styles */
-        .slideshow-container {
-            max-width: 100%;
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #e2e7cd;
-        }
-        .mySlides {
-            display: none;
+        .container {
             width: 100%;
-            height: 100%;
-            text-align: center;
+            max-width: 400px;
+            background: var(--card);
+            padding: 14px;
+            border-radius: 14px;
+            box-shadow: 0 4px 8px rgba(0,0,0,.12);
+            margin: 14px auto;
         }
-        .mySlides img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            margin: auto;
-            display: block;
-        }
-        .fade {
-            animation-name: fade;
-            animation-duration: 1s;
-        }
-        @keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
-        }
+        .topLogo img { width:130px; display:block; margin:0 auto 6px; border-radius:6px; object-fit:cover; }
+        .livePop { display:inline-block; padding:6px 14px; border-radius:20px; background:linear-gradient(90deg,#2ecc71,#27ae60); color:#fff; font-size:12px; font-weight:700; animation:popPulse 1.2s infinite; }
+        @keyframes popPulse { 0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)} }
+        .timerBar { background:#e8f5e9; color:#1b5e20; padding:6px; border-radius:8px; font-size:12px; text-align:center; font-weight:700; margin:8px 0; }
+        h2 { text-align:center; margin:6px 0; color:#d9365d; font-size:18px; }
 
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            .slideshow-container {
-                height: 220px;
-            }
-        }
+        input, select, button { width:100%; padding:9px; margin-bottom:8px; border-radius:8px; border:1px solid #ddd; font-size:13px; }
+        select[multiple] { height:72px; } /* slightly taller for mobile usability */
+        .ticketBox { border:2px dashed #ff4f79; border-radius:12px; padding:10px; margin-bottom:8px; background: #fffafc; }
+        .ticketAmount, .ticketTitle { padding:6px 4px; margin-bottom:6px; }
+        .ticketAmount { background:#e8f5e9; color:#1b5e20; border-radius:8px; font-weight:700; text-align:center; }
+        .ticketTitle { font-weight:700; color:#d9365d; }
+        .counter { font-size:12px; margin-top:3px; color:#666; }
+        .selectedList, #freeList { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+        .chip { background:#ffe3ea; color:#d9365d; padding:6px 8px; border-radius:14px; font-size:12px; display:flex; gap:8px; align-items:center; }
+        .chip span { cursor:pointer; font-weight:700; }
+        button.primary { background: linear-gradient(90deg,var(--accent),var(--accent-dark)); color:#fff; border:none; font-weight:700; cursor:pointer; font-size:14px; border-radius:10px; padding:10px; }
+        button.primary:disabled { opacity:.5; cursor:not-allowed; }
 
-        /* Lottery Page Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 10px;
-            background-color: #f4f4f4;
-        }
-        /* Header Section */
-        .header {
-            text-align: center;
-            padding: 10px;
-            background-color: #e2e7cd;
-            color: white;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .header p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-        }
-        /* Check Lottery Winner Section */
+        /* Modal */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:1000; padding:12px; }
+        .modalBox { background:#fff; width:100%; max-width:420px; border-radius:12px; padding:16px; }
+        .modalBox h3 { text-align:center; color:#d9365d; margin-bottom:8px; }
+        .modalBtns { display:flex; gap:10px; margin-top:12px; }
+        .modalBtns button { flex:1; padding:10px; border-radius:8px; border:none; cursor:pointer; }
+        .cancelBtn { background:#ccc; color:#333; }
+
+        /* ---------------------------
+           Slideshow
+           --------------------------- */
+        .slideshow-container { max-width:100%; position:relative; margin: 10px auto; overflow:hidden; height:400px; background:#e2e7cd; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+        .mySlides { display:none; width:100%; height:100%; text-align:center; }
+        .mySlides img { max-width:100%; max-height:100%; object-fit:contain; display:block; margin:auto; }
+        .fade { animation-name: fade; animation-duration: 1s; }
+        @keyframes fade { from{opacity:.4} to{opacity:1} }
+        @media (max-width:600px) { .slideshow-container { height:220px; } }
+
+        /* ---------------------------
+           Check winner & cards
+           --------------------------- */
         .check-winner {
             width: 100%;
             max-width: 350px;
-            margin: 0 auto 20px auto;
-            padding: 20px;
+            margin: 16px auto;
+            padding: 18px;
             border-radius: 15px;
             background: linear-gradient(145deg, #1a2a44, #0f1b2a);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 16px rgba(0,0,0,.18);
             text-align: center;
             color: white;
             border: 2px solid #2c5364;
         }
-        .check-winner h2 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 0 15px 0;
-            line-height: 1.2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-        .check-winner label {
-            font-size: 0.9rem;
-            display: block;
-            margin: 5px 0;
-            color: #d3d3d3;
-        }
-        .check-winner input[type="text"] {
-            padding: 10px;
-            width: 100%;
-            max-width: 200px;
-            margin: 5px 0;
-            font-size: 0.9rem;
-            border: 1px solid #444;
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: #fff;
-            color: #333;
-            transition: border-color 0.3s;
-        }
-        .check-winner input[type="text"]:focus {
-            border-color: #28a745;
-            outline: none;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        .check-winner button {
-            padding: 10px 25px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-        .check-winner button:hover {
-            background-color: #218838;
-            transform: scale(1.05);
-        }
-        .check-winner .pdf-link {
-            font-size: 0.85rem;
-            color: #28a745;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .check-winner .pdf-link:hover {
-            text-decoration: underline;
-            color: #218838;
-        }
-        #result {
-            margin-top: 10px;
-            display: none;
-            font-size: 0.85rem;
-            color: #d3d3d3;
-        }
-        /* Lottery Cards Section */
+        .check-winner h2 { font-size:1.4rem; margin-bottom:8px; line-height:1.15; text-transform:uppercase; }
+        .check-winner label { color:#d3d3d3; display:block; margin-bottom:6px; }
+        .check-winner input[type="text"] { padding:10px; width:100%; max-width:240px; margin:6px auto; border-radius:8px; border:1px solid #444; background:#fff; color:#333; }
+        .check-winner .button-container { margin-top:12px; justify-content:center; display:flex; gap:10px; flex-wrap:wrap; }
+        .check-winner button { background:#28a745; color:#fff; padding:10px 18px; border:none; border-radius:8px; cursor:pointer; font-weight:700; }
+        .check-winner .pdf-link { color:#28a745; font-weight:700; display:inline-block; margin-top:6px; text-decoration:none; }
+        #result { margin-top:10px; display:none; color:#d3d3d3; font-size:0.9rem; }
+
         .grid-container {
-            display: grid;
+            display:grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
+            gap:8px;
             max-width: 350px;
-            margin: 0 auto;
-            background-color: #000;
+            margin: 8px auto;
+            background-color:#000;
+            border-radius:8px;
+            overflow:hidden;
         }
-        .card {
-            position: relative;
-            height: 120px;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .card:nth-child(1) {
-            background-color: #2C5364;
-        }
-        .card:nth-child(2) {
-            background-color: #0F2027;
-        }
-        .card:nth-child(3) {
-            background-color: #203A43;
-        }
-        .card:nth-child(4) {
-            background-color: #3B6978;
-        }
-        .card-content {
-            position: relative;
-        }
-        .card svg {
-            width: 35px;
-            height: 35px;
-            margin-bottom: 8px;
-        }
-        .card p {
-            margin: 0;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-        /* Mobile-specific styles */
-        @media (max-width: 400px) {
-            .header p {
-                font-size: 0.85rem;
-            }
-            .check-winner {
-                max-width: 300px;
-                padding: 15px;
-            }
-            .check-winner h2 {
-                font-size: 1.3rem;
-            }
-            .check-winner label {
-                font-size: 0.85rem;
-            }
-            .check-winner input[type="text"] {
-                max-width: 180px;
-                font-size: 0.85rem;
-            }
-            .check-winner button {
-                font-size: 0.85rem;
-                padding: 8px 20px;
-            }
-            .check-winner .pdf-link {
-                font-size: 0.8rem;
-            }
-            .button-container {
-                gap: 8px;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
-                max-width: 300px;
-            }
-            .card {
-                height: 100px;
-            }
-            .card p {
-                font-size: 0.85rem;
-            }
-            .card svg {
-                width: 30px;
-                height: 30px;
-            }
+        .card { position:relative; height:120px; color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px; }
+        .card:nth-child(1) { background-color: #2C5364; }
+        .card:nth-child(2) { background-color: #0F2027; }
+        .card:nth-child(3) { background-color: #203A43; }
+        .card:nth-child(4) { background-color: #3B6978; }
+        .card svg { width:36px; height:36px; margin-bottom:8px; }
+        .card p { margin:0; font-weight:700; }
+
+        @media (max-width:480px) {
+            .container { max-width: 96%; padding:12px; border-radius:12px; }
+            .check-winner { max-width:96%; padding:14px; }
+            .grid-container { max-width:96%; grid-template-columns: 1fr; }
+            .card { height:100px; }
+            .container input, .container select, .container button { font-size:14px; padding:10px; }
+            .ticketBox { padding:10px; }
+            select[multiple] { height:90px; }
+            .modalBox { max-width: 96%; padding:12px; }
         }
 
-        /* Feedback Styles */
+        /* ---------------------------
+           Feedback / live winners
+           --------------------------- */
         :root{
-        --primary:#0a5a0a;
-        --secondary:#d4af37;
-        --accent:#e31837;
-        --text:#333;
-        --light-bg:#f8f9fa;
-        --card-bg:#fff9e6;
+            --primary:#0a5a0a;
+            --secondary:#d4af37;
+            --accent2:#e31837;
+            --card-bg:#fff9e6;
         }
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{
-        font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-        background:#f0f2f5;
-        color:var(--text);
-        padding:20px;
+        .lottery-container {
+            max-width:1000px;
+            margin: 20px auto;
+            background:#fff;
+            border-radius:12px;
+            box-shadow:0 10px 30px rgba(0,0,0,.08);
+            overflow:hidden;
+            border:2px solid var(--primary);
         }
-        .lottery-container{
-        max-width:1000px;
-        margin:30px auto;
-        background:#fff;
-        border-radius:12px;
-        box-shadow:0 10px 30px rgba(0,0,0,.1);
-        overflow:hidden;
-        border:2px solid var(--primary);
+        .feedback-container { position:relative; overflow:hidden; }
+        .feedback-container::before, .feedback-container::after {
+            content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2;
         }
-        .lottery-header{
-        background:linear-gradient(135deg,var(--primary),#128812);
-        color:#fff;
-        padding:20px;
-        text-align:center;
-        position:relative;
+        .feedback-container::before { left:0; background:linear-gradient(90deg,#fff,transparent); }
+        .feedback-container::after { right:0; background:linear-gradient(90deg,transparent,#fff); }
+        .feedback-track {
+            display:flex;
+            padding:18px 20px;
+            animation:scroll 40s linear infinite;
+            gap:18px;
+            align-items:flex-start;
         }
-        .lottery-header h2{font-size:28px;margin-bottom:5px}
-        .lottery-header p{font-size:14px;opacity:.9}
-        .official-badge{
-        position:absolute;
-        top:10px;
-        right:20px;
-        background:var(--accent);
-        color:#fff;
-        padding:5px 15px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:bold;
-        transform:rotate(5deg);
+        .feedback-card {
+            min-width:320px;
+            max-width:340px;
+            margin-right:6px;
+            background:var(--card-bg);
+            border-radius:10px;
+            padding:14px;
+            box-shadow:0 5px 15px rgba(0,0,0,.06);
+            border-top:4px solid var(--secondary);
+            position:relative;
         }
-        .feedback-container{overflow:hidden;position:relative}
-        .feedback-container::before,
-        .feedback-container::after{
-        content:'';
-        position:absolute;
-        top:0;bottom:0;
-        width:80px;
-        z-index:2;
-        }
-        .feedback-container::before{left:0;background:linear-gradient(90deg,#fff,transparent)}
-        .feedback-container::after{right:0;background:linear-gradient(90deg,transparent,#fff)}
-        .feedback-track{
-        display:flex;
-        padding:25px 20px;
-        animation:scroll 40s linear infinite;
-        }
-        .feedback-card{
-        min-width:320px;
-        margin-right:20px;
-        background:var(--card-bg);
-        border-radius:10px;
-        padding:20px;
-        box-shadow:0 5px 15px rgba(0,0,0,.08);
-        border-top:4px solid var(--secondary);
-        position:relative;
-        }
-        .feedback-card:hover{transform:translateY(-5px)}
-        .winner-badge{
-        position:absolute;
-        top:-10px;
-        right:15px;
-        background:var(--accent);
-        color:#fff;
-        padding:3px 10px;
-        border-radius:15px;
-        font-size:10px;
-        font-weight:bold;
-        }
-        .user-info{display:flex;align-items:center;margin-bottom:15px}
-        .avatar{
-        width:50px;height:50px;border-radius:50%;
-        background:#f1f1f1;
-        display:flex;align-items:center;justify-content:center;
-        margin-right:15px;
-        font-weight:bold;color:var(--primary);
-        border:2px solid var(--secondary);
-        }
-        .user-details h4{font-size:16px;color:var(--primary)}
-        .user-details p{font-size:12px;color:#666}
-        .feedback-text{font-size:14px;line-height:1.5;margin-bottom:15px}
-        .lottery-details{
-        display:flex;justify-content:space-between;
-        font-size:12px;border-top:1px dashed #ccc;padding-top:10px;
-        }
-        .prize-amount{color:var(--accent);font-weight:bold}
-        .timestamp{font-style:italic}
-        @keyframes scroll{
-        0%{transform:translateX(0)}
-        100%{transform:translateX(-50%)}
-        }
-        .controls{
-        display:flex;justify-content:center;
-        padding:15px;background:#f8f9fa;
-        }
-        .control-btn{
-        background:var(--primary);color:#fff;
-        border:none;padding:8px 20px;margin:0 10px;
-        border-radius:5px;cursor:pointer;
-        }
-        .live-indicator{
-        display:flex;justify-content:center;align-items:center;
-        padding:10px;background:#f8f9fa;
-        }
-        .live-dot{
-        width:10px;height:10px;background:#e31837;
-        border-radius:50%;margin-right:8px;
-        animation:pulse 1.5s infinite;
-        }
-        @keyframes pulse{
-        0%{opacity:1}50%{opacity:.3}100%{opacity:1}
-        }
-        .disclaimer{
-        font-size:11px;text-align:center;
-        padding:15px;background:#f8f9fa;
+        .winner-badge { position:absolute; top:-10px; right:12px; background:var(--accent2); color:#fff; padding:4px 10px; border-radius:12px; font-size:11px; font-weight:700; }
+        .user-info { display:flex; align-items:center; margin-bottom:10px; gap:12px; }
+        .avatar { width:50px; height:50px; border-radius:50%; background:#f1f1f1; display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary); border:2px solid var(--secondary); }
+        .user-details h4 { font-size:15px; color:var(--primary); margin-bottom:2px; }
+        .feedback-text { font-size:14px; margin-bottom:10px; color:#333; }
+        .lottery-details { display:flex; justify-content:space-between; font-size:12px; border-top:1px dashed #ccc; padding-top:10px; color:#333; }
+        .prize-amount { color:var(--accent2); font-weight:800; }
+        .controls { display:flex; justify-content:center; padding:12px; background:#f8f9fa; gap:12px; }
+        .control-btn { background:var(--primary); color:#fff; border:none; padding:8px 18px; border-radius:6px; cursor:pointer; font-weight:700; }
+        .live-indicator { display:flex; justify-content:center; align-items:center; gap:8px; padding:10px; background:#f8f9fa; color:#333; font-weight:700; }
+        .live-dot { width:10px; height:10px; background:var(--accent2); border-radius:50%; animation:livePulse 1.5s infinite; }
+        @keyframes livePulse { 0%{opacity:1}50%{opacity:.3}100%{opacity:1} }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .disclaimer { font-size:12px; text-align:center; padding:12px; background:#f8f9fa; color:#555; }
+
+        /* ensure feedback track doesn't overflow on small screens */
+        @media (max-width:640px) {
+            .feedback-track { padding:12px; gap:12px; animation-duration: 28s; }
+            .feedback-card { min-width:280px; max-width:290px; padding:12px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="header">
-    <div class="logo-container">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/08/image-removebg-preview-6-e1754205589977.png" alt="G20 Logo" class="g20-logo">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/08/top-logo-e1754204463750.png" alt="Kerala Lottery Logo" class="kerala-logo">
+<div class="page-wrap">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/08/image-removebg-preview-6-e1754205589977.png" alt="G20 Logo" class="g20-logo">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/08/top-logo-e1754204463750.png" alt="Kerala Lottery Logo" class="kerala-logo">
+        </div>
+        <div class="button-container">
+            <button onclick="window.location.href='https://kerelalottery.ct.ws'">Book Tickets</button>
+            <button onclick="window.location.href='https://kerelalottery.ct.ws/123-2/'">Check Result</button>
+        </div>
+    </header>
+
+    <!-- Form -->
+    <div class="container" aria-labelledby="ticket-heading">
+        <div class="topLogo">
+            <img src="https://i.postimg.cc/XvXzF7RJ/IMG-20251225-WA0003.jpg" alt="top logo">
+        </div>
+
+        <div style="text-align:center;margin-bottom:8px;">
+            <span class="livePop">🟢 LIVE BOOKING ACTIVE</span>
+        </div>
+
+        <div class="timerBar" id="timer">⏳ Booking closes in 10:00</div>
+
+        <h2 id="ticket-heading">Kerala Government Ticket</h2>
+
+        <input id="name" placeholder="Full Name" autocomplete="name">
+        <input id="mobile" placeholder="Mobile Number" inputmode="tel" autocomplete="tel">
+        <input id="email" placeholder="Email (Optional)" inputmode="email" autocomplete="email">
+
+        <select id="state" aria-label="Select State">
+            <option value="">Select State</option>
+            <option>Kerala</option>
+            <option>Tamil Nadu</option>
+            <option>Karnataka</option>
+            <option>Andhra Pradesh</option>
+            <option>Telangana</option>
+        </select>
+
+        <select id="language" aria-label="Select Language">
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Malayalam</option>
+            <option>Tamil</option>
+            <option>Kannada</option>
+            <option>Telugu</option>
+        </select>
+
+        <div class="ticketBox" aria-live="polite">
+            <div class="ticketAmount" id="ticketAmount">💰 Total Amount: ₹0</div>
+            <div class="ticketTitle">🎟 Select Lucky Ticket (₹149 per ticket)</div>
+            <select id="ticket" multiple aria-label="Select tickets"></select>
+            <div class="counter" id="counter">Selected: 0 tickets</div>
+            <div class="selectedList" id="selectedList" aria-hidden="false"></div>
+            <div class="ticketTitle" style="margin-top:10px;">Free Tickets</div>
+            <div class="selectedList" id="freeList" aria-hidden="false"></div>
+        </div>
+
+        <div class="ticketAmount" id="breakdown" style="font-size:13px;"></div>
+
+        <input id="amount" placeholder="Total Amount (₹)" readonly>
+        <button id="submitBtn" class="primary" disabled>Submit & Continue</button>
     </div>
-    <div class="button-container">
-        <button onclick="window.location.href='https://kerelalottery.ct.ws'">Book Tickets</button>
-        <button onclick="window.location.href='https://kerelalottery.ct.ws/123-2/'">Check Result</button>
-    </div>
-</header>
 
-<!-- Form -->
-<div class="container">
-    <div class="topLogo">
-        <img src="https://i.postimg.cc/XvXzF7RJ/IMG-20251225-WA0003.jpg">
-    </div>
-
-    <div style="text-align:center;margin-bottom:6px;">
-        <span class="livePop">🟢 LIVE BOOKING ACTIVE</span>
-    </div>
-
-    <div class="timerBar" id="timer">⏳ Booking closes in 10:00</div>
-
-    <h2>Kerala Government Ticket</h2>
-
-    <input id="name" placeholder="Full Name">
-    <input id="mobile" placeholder="Mobile Number">
-    <input id="email" placeholder="Email (Optional)">
-
-    <select id="state">
-        <option value="">Select State</option>
-        <option>Kerala</option>
-        <option>Tamil Nadu</option>
-        <option>Karnataka</option>
-        <option>Andhra Pradesh</option>
-        <option>Telangana</option>
-    </select>
-
-    <select id="language">
-        <option>English</option>
-        <option>Hindi</option>
-        <option>Malayalam</option>
-        <option>Tamil</option>
-        <option>Kannada</option>
-        <option>Telugu</option>
-    </select>
-    <div class="ticketBox">
-        <div class="ticketAmount" id="ticketAmount">💰 Total Amount: ₹0</div>
-        <div class="ticketTitle">🎟 Select Lucky Ticket (₹149 per ticket)</div>
-        <select id="ticket" multiple></select>
-        <div class="counter" id="counter">Selected: 0 tickets</div>
-        <div class="selectedList" id="selectedList"></div>
-        <div class="ticketTitle">Free Tickets</div>
-        <div class="selectedList" id="freeList"></div>
-    </div>
-    <div class="ticketAmount" id="breakdown"></div>
-
-    <input id="amount" placeholder="Total Amount (₹)" readonly>
-    <button id="submitBtn" disabled>Submit & Continue</button>
-</div>
-
-<div class="modal" id="previewModal">
-    <div class="modalBox">
-        <h3>Payment Preview</h3>
-        <div class="summary" id="previewContent"></div>
-        <div class="modalBtns">
-            <button class="cancelBtn" onclick="closePreview()">Cancel</button>
-            <button onclick="proceedWhatsApp()">Confirm & WhatsApp</button>
+    <div class="modal" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+        <div class="modalBox">
+            <h3 id="previewTitle">Payment Preview</h3>
+            <div class="summary" id="previewContent"></div>
+            <div class="modalBtns">
+                <button class="cancelBtn" onclick="closePreview()">Cancel</button>
+                <button onclick="proceedWhatsApp()" class="primary">Confirm & WhatsApp</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Slideshow -->
-<div class="slideshow-container">
-    <div class="mySlides fade">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/img.jpg" alt="Image 1">
-    </div>
-    <div class="mySlides fade">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/imag.jpg" alt="Image 2">
-    </div>
-    <div class="mySlides fade">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/akshaya1.jpg" alt="Image 3">
-    </div>
-    <div class="mySlides fade">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/winwin.jpg" alt="Image 4">
-    </div>
-    <div class="mySlides fade">
-        <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/imug.jpg" alt="Image 5">
-    </div>
-</div>
-
-<!-- Check Winner and Grid -->
-<div class="check-winner">
-    <h2>Check Lottery Winner</h2>
-    <label for="lotteryId">Enter Lottery ID:</label>
-    <input type="text" id="lotteryId" placeholder="Enter Lottery ID">
-    <div class="button-container">
-        <button onclick="showResults()">Submit</button>
-        <a href="#" class="pdf-link">Download PDF Results</a>
-    </div>
-    <div id="result">[result:shortcode]</div>
-</div>
-
-<div class="grid-container">
-    <!-- Card 1: Draw result (Trophy icon) -->
-    <div class="card">
-        <div class="card-content">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
-                <path d="M12 15c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z"/>
-                <path d="M12 9v6m-3-3h6"/>
-            </svg>
-            <p>Draw result</p>
+    <!-- Slideshow -->
+    <div class="slideshow-container" aria-hidden="false">
+        <div class="mySlides fade">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/img.jpg" alt="Slide 1">
+        </div>
+        <div class="mySlides fade">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/imag.jpg" alt="Slide 2">
+        </div>
+        <div class="mySlides fade">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/akshaya1.jpg" alt="Slide 3">
+        </div>
+        <div class="mySlides fade">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/winwin.jpg" alt="Slide 4">
+        </div>
+        <div class="mySlides fade">
+            <img src="https://kerelalottery.ct.ws/wp-content/uploads/2025/05/imug.jpg" alt="Slide 5">
         </div>
     </div>
-    <!-- Card 2: Lottery claim (Checkmark icon) -->
-    <div class="card">
-        <div class="card-content">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
-                <path d="M5 12l5 5L19 7"/>
-            </svg>
-            <p>Lottery claim</p>
+
+    <!-- Check Winner and Grid -->
+    <div class="check-winner" aria-labelledby="check-heading">
+        <h2 id="check-heading">Check Lottery Winner</h2>
+        <label for="lotteryId">Enter Lottery ID:</label>
+        <input type="text" id="lotteryId" placeholder="Enter Lottery ID">
+        <div class="button-container" style="justify-content:center;">
+            <button onclick="showResults()">Submit</button>
+            <a href="#" class="pdf-link">Download PDF Results</a>
+        </div>
+        <div id="result">[result:shortcode]</div>
+    </div>
+
+    <div class="grid-container" role="navigation" aria-label="Quick links">
+        <div class="card">
+            <div class="card-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" aria-hidden="true">
+                    <path d="M12 15c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z"/>
+                    <path d="M12 9v6m-3-3h6"/>
+                </svg>
+                <p>Draw result</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" aria-hidden="true">
+                    <path d="M5 12l5 5L19 7"/>
+                </svg>
+                <p>Lottery claim</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" aria-hidden="true">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/>
+                    <path d="M12 14c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6z"/>
+                </svg>
+                <p>Draw result</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" aria-hidden="true">
+                    <path d="M3 6h18v12H3z"/>
+                    <path d="M15 6v12m-6-6h6"/>
+                </svg>
+                <p>Draw result</p>
+            </div>
         </div>
     </div>
-    <!-- Card 3: Draw result (Person icon) -->
-    <div class="card">
-        <div class="card-content">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/>
-                <path d="M12 14c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6z"/>
-            </svg>
-            <p>Draw result</p>
+
+    <!-- Feedback -->
+    <div class="lottery-container" aria-live="polite">
+        <div class="feedback-container">
+            <div class="feedback-track">
+
+            <!-- feedback cards (kept all) -->
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">RK</div>
+                    <div class="user-details"><h4>Rajesh Kumar</h4><p>From Kochi</p></div>
+                </div>
+                <div class="feedback-text">"Just won ₹7,50,000 in Karunya KR-625! Payment received in 5 days."</div>
+                <div class="lottery-details"><span class="prize-amount">₹7,50,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">JACKPOT</div>
+                <div class="user-info">
+                    <div class="avatar">PM</div>
+                    <div class="user-details"><h4>Priya Menon</h4><p>From Thiruvananthapuram</p></div>
+                </div>
+                <div class="feedback-text">"Won ₹25,00,000 in Christmas Bumper. Everything verified officially."</div>
+                <div class="lottery-details"><span class="prize-amount">₹25,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">SK</div>
+                    <div class="user-details"><h4>Sunil Kumar</h4><p>From Kozhikode</p></div>
+                </div>
+                <div class="feedback-text">"Finally won ₹1,20,000 in Win-Win after 3 years."</div>
+                <div class="lottery-details"><span class="prize-amount">₹1,20,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">BIG WIN</div>
+                <div class="user-info">
+                    <div class="avatar">AR</div>
+                    <div class="user-details"><h4>Anitha Rajan</h4><p>From Thrissur</p></div>
+                </div>
+                <div class="feedback-text">"₹5,00,000 in Akshaya AK-728. Transparent process."</div>
+                <div class="lottery-details"><span class="prize-amount">₹5,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">VP</div>
+                    <div class="user-details"><h4>Vijay Pillai</h4><p>From Kollam</p></div>
+                </div>
+                <div class="feedback-text">"₹50,000 in Nirmal. Third win this year."</div>
+                <div class="lottery-details"><span class="prize-amount">₹50,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">JACKPOT</div>
+                <div class="user-info">
+                    <div class="avatar">LS</div>
+                    <div class="user-details"><h4>Lakshmi S.</h4><p>From Alappuzha</p></div>
+                </div>
+                <div class="feedback-text">"₹1 Crore in Onam Bumper. Life changing!"</div>
+                <div class="lottery-details"><span class="prize-amount">₹1,00,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">MA</div>
+                    <div class="user-details"><h4>Mohammed Ali</h4><p>From Malappuram</p></div>
+                </div>
+                <div class="feedback-text">"₹2,50,000 in Karunya Plus. Bank transfer done in 3 days."</div>
+                <div class="lottery-details"><span class="prize-amount">₹2,50,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">BIG WIN</div>
+                <div class="user-info">
+                    <div class="avatar">GP</div>
+                    <div class="user-details"><h4>Geetha P.</h4><p>From Kannur</p></div>
+                </div>
+                <div class="feedback-text">"₹75,000 in Sthree Sakthi. Very happy."</div>
+                <div class="lottery-details"><span class="prize-amount">₹75,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">SN</div>
+                    <div class="user-details"><h4>Suresh Nair</h4><p>From Palakkad</p></div>
+                </div>
+                <div class="feedback-text">"₹25,000 in Pournami this month."</div>
+                <div class="lottery-details"><span class="prize-amount">₹25,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">JACKPOT</div>
+                <div class="user-info">
+                    <div class="avatar">RK</div>
+                    <div class="user-details"><h4>Radha Krishnan</h4><p>From Ernakulam</p></div>
+                </div>
+                <div class="feedback-text">"₹50,00,000 in Vishu Bumper."</div>
+                <div class="lottery-details"><span class="prize-amount">₹50,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">RS</div>
+                    <div class="user-details"><h4>Ramesh S.</h4><p>From Kottayam</p></div>
+                </div>
+                <div class="feedback-text">"₹1,00,000 in Karunya Plus."</div>
+                <div class="lottery-details"><span class="prize-amount">₹1,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">BIG WIN</div>
+                <div class="user-info">
+                    <div class="avatar">NP</div>
+                    <div class="user-details"><h4>Nisha Pillai</h4><p>From Pathanamthitta</p></div>
+                </div>
+                <div class="feedback-text">"₹3,00,000 in Akshaya Lottery."</div>
+                <div class="lottery-details"><span class="prize-amount">₹3,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">JK</div>
+                    <div class="user-details"><h4>Jithin K.</h4><p>From Idukki</p></div>
+                </div>
+                <div class="feedback-text">"₹25,000 first ever win."</div>
+                <div class="lottery-details"><span class="prize-amount">₹25,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">JACKPOT</div>
+                <div class="user-info">
+                    <div class="avatar">AS</div>
+                    <div class="user-details"><h4>Anil S.</h4><p>From Kasaragod</p></div>
+                </div>
+                <div class="feedback-text">"₹10,00,000 Vishu Bumper."</div>
+                <div class="lottery-details"><span class="prize-amount">₹10,00,000</span><span class="timestamp"></span></div>
+            </div>
+
+            <div class="feedback-card">
+                <div class="winner-badge">WINNER</div>
+                <div class="user-info">
+                    <div class="avatar">DP</div>
+                    <div class="user-details"><h4>Deepa P.</h4><p>From Wayanad</p></div>
+                </div>
+                <div class="feedback-text">"₹60,000 in Sthree Sakthi."</div>
+                <div class="lottery-details"><span class="prize-amount">₹60,000</span><span class="timestamp"></span></div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="live-indicator">
+            <div class="live-dot" aria-hidden="true"></div>
+            <span>LIVE WINNER UPDATES</span>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="pauseAnimation()"><i class="fas fa-pause" aria-hidden="true"></i> Pause</button>
+            <button class="control-btn" onclick="playAnimation()"><i class="fas fa-play" aria-hidden="true"></i> Play</button>
+        </div>
+
+        <div class="disclaimer">
+            *These are testimonials from verified winners. Results may vary. Please play responsibly.
         </div>
     </div>
-    <!-- Card 4: Draw result (Ticket icon) -->
-    <div class="card">
-        <div class="card-content">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
-                <path d="M3 6h18v12H3z"/>
-                <path d="M15 6v12m-6-6h6"/>
-            </svg>
-            <p>Draw result</p>
-        </div>
-    </div>
-</div>
 
-<!-- Feedback -->
-<div class="lottery-container">
+</div> <!-- end page-wrap -->
 
-    <div class="feedback-container">
-    <div class="feedback-track">
-
-    <!-- 1 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">RK</div>
-    <div class="user-details"><h4>Rajesh Kumar</h4><p>From Kochi</p></div>
-    </div>
-    <div class="feedback-text">"Just won ₹7,50,000 in Karunya KR-625! Payment received in 5 days."</div>
-    <div class="lottery-details"><span class="prize-amount">₹7,50,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 2 -->
-    <div class="feedback-card">
-    <div class="winner-badge">JACKPOT</div>
-    <div class="user-info">
-    <div class="avatar">PM</div>
-    <div class="user-details"><h4>Priya Menon</h4><p>From Thiruvananthapuram</p></div>
-    </div>
-    <div class="feedback-text">"Won ₹25,00,000 in Christmas Bumper. Everything verified officially."</div>
-    <div class="lottery-details"><span class="prize-amount">₹25,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 3 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">SK</div>
-    <div class="user-details"><h4>Sunil Kumar</h4><p>From Kozhikode</p></div>
-    </div>
-    <div class="feedback-text">"Finally won ₹1,20,000 in Win-Win after 3 years."</div>
-    <div class="lottery-details"><span class="prize-amount">₹1,20,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 4 -->
-    <div class="feedback-card">
-    <div class="winner-badge">BIG WIN</div>
-    <div class="user-info">
-    <div class="avatar">AR</div>
-    <div class="user-details"><h4>Anitha Rajan</h4><p>From Thrissur</p></div>
-    </div>
-    <div class="feedback-text">"₹5,00,000 in Akshaya AK-728. Transparent process."</div>
-    <div class="lottery-details"><span class="prize-amount">₹5,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 5 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">VP</div>
-    <div class="user-details"><h4>Vijay Pillai</h4><p>From Kollam</p></div>
-    </div>
-    <div class="feedback-text">"₹50,000 in Nirmal. Third win this year."</div>
-    <div class="lottery-details"><span class="prize-amount">₹50,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 6 -->
-    <div class="feedback-card">
-    <div class="winner-badge">JACKPOT</div>
-    <div class="user-info">
-    <div class="avatar">LS</div>
-    <div class="user-details"><h4>Lakshmi S.</h4><p>From Alappuzha</p></div>
-    </div>
-    <div class="feedback-text">"₹1 Crore in Onam Bumper. Life changing!"</div>
-    <div class="lottery-details"><span class="prize-amount">₹1,00,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 7 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">MA</div>
-    <div class="user-details"><h4>Mohammed Ali</h4><p>From Malappuram</p></div>
-    </div>
-    <div class="feedback-text">"₹2,50,000 in Karunya Plus. Bank transfer done in 3 days."</div>
-    <div class="lottery-details"><span class="prize-amount">₹2,50,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 8 -->
-    <div class="feedback-card">
-    <div class="winner-badge">BIG WIN</div>
-    <div class="user-info">
-    <div class="avatar">GP</div>
-    <div class="user-details"><h4>Geetha P.</h4><p>From Kannur</p></div>
-    </div>
-    <div class="feedback-text">"₹75,000 in Sthree Sakthi. Very happy."</div>
-    <div class="lottery-details"><span class="prize-amount">₹75,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 9 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">SN</div>
-    <div class="user-details"><h4>Suresh Nair</h4><p>From Palakkad</p></div>
-    </div>
-    <div class="feedback-text">"₹25,000 in Pournami this month."</div>
-    <div class="lottery-details"><span class="prize-amount">₹25,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 10 -->
-    <div class="feedback-card">
-    <div class="winner-badge">JACKPOT</div>
-    <div class="user-info">
-    <div class="avatar">RK</div>
-    <div class="user-details"><h4>Radha Krishnan</h4><p>From Ernakulam</p></div>
-    </div>
-    <div class="feedback-text">"₹50,00,000 in Vishu Bumper."</div>
-    <div class="lottery-details"><span class="prize-amount">₹50,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 11 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">RS</div>
-    <div class="user-details"><h4>Ramesh S.</h4><p>From Kottayam</p></div>
-    </div>
-    <div class="feedback-text">"₹1,00,000 in Karunya Plus."</div>
-    <div class="lottery-details"><span class="prize-amount">₹1,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 12 -->
-    <div class="feedback-card">
-    <div class="winner-badge">BIG WIN</div>
-    <div class="user-info">
-    <div class="avatar">NP</div>
-    <div class="user-details"><h4>Nisha Pillai</h4><p>From Pathanamthitta</p></div>
-    </div>
-    <div class="feedback-text">"₹3,00,000 in Akshaya Lottery."</div>
-    <div class="lottery-details"><span class="prize-amount">₹3,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 13 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">JK</div>
-    <div class="user-details"><h4>Jithin K.</h4><p>From Idukki</p></div>
-    </div>
-    <div class="feedback-text">"₹25,000 first ever win."</div>
-    <div class="lottery-details"><span class="prize-amount">₹25,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 14 -->
-    <div class="feedback-card">
-    <div class="winner-badge">JACKPOT</div>
-    <div class="user-info">
-    <div class="avatar">AS</div>
-    <div class="user-details"><h4>Anil S.</h4><p>From Kasaragod</p></div>
-    </div>
-    <div class="feedback-text">"₹10,00,000 Vishu Bumper."</div>
-    <div class="lottery-details"><span class="prize-amount">₹10,00,000</span><span class="timestamp"></span></div>
-    </div>
-
-    <!-- 15 -->
-    <div class="feedback-card">
-    <div class="winner-badge">WINNER</div>
-    <div class="user-info">
-    <div class="avatar">DP</div>
-    <div class="user-details"><h4>Deepa P.</h4><p>From Wayanad</p></div>
-    </div>
-    <div class="feedback-text">"₹60,000 in Sthree Sakthi."</div>
-    <div class="lottery-details"><span class="prize-amount">₹60,000</span><span class="timestamp"></span></div>
-    </div>
-
-    </div>
-    </div>
-
-    <div class="live-indicator">
-    <div class="live-dot"></div>
-    <span>LIVE WINNER UPDATES</span>
-    </div>
-
-    <div class="controls">
-    <button class="control-btn" onclick="pauseAnimation()"><i class="fas fa-pause"></i> Pause</button>
-    <button class="control-btn" onclick="playAnimation()"><i class="fas fa-play"></i> Play</button>
-    </div>
-
-    <div class="disclaimer">
-    *These are testimonials from verified winners. Results may vary. Please play responsibly.
-    </div>
-
-</div>
-
-<!-- Scripts -->
+<!-- Scripts (kept the entire original logic, preserved behavior) -->
 <script>
     // Form Script (Modified)
     let time=1800;
     setInterval(()=>{
      let m=Math.floor(time/60),s=time%60;
-     document.getElementById("timer").textContent=`⏳ Booking closes in ${m}:${s.toString().padStart(2,"0")}`;
+     const timerEl=document.getElementById("timer");
+     if(timerEl) timerEl.textContent=`⏳ Booking closes in ${m}:${s.toString().padStart(2,"0")}`;
      if(time>0) time--;
     },1000);
 
@@ -937,7 +666,7 @@
      sel.forEach(t=>{
        let c=document.createElement("div");
        c.className="chip";
-       c.innerHTML=`${t} <span onclick="removeTicket('${t}')">×</span>`;
+       c.innerHTML=`${t} <span onclick="removeTicket('${t}')" aria-hidden="true">×</span>`;
        selectedList.appendChild(c);
      });
      let freeTickets = [];
@@ -976,7 +705,7 @@
     submitBtn.onclick=()=>{
      if(isSubmitting) return;
      isSubmitting = true;
-     fbq('track','Lead');
+     try { fbq('track','Lead'); } catch(e){}
      let {sel, freeTickets, price, paid, free, bd} = refresh();
      previewContent.innerHTML=`
 <b>Name:</b> ${nameI.value}<br>
@@ -996,7 +725,7 @@
      previewModal.style.display="flex";
     };
 
-    function closePreview(){previewModal.style.display="none"; isSubmitting = false;}
+    function closePreview(){ previewModal.style.display="none"; isSubmitting = false; }
 
     function proceedWhatsApp(){
      let {sel, freeTickets, price, paid, free} = refresh();
@@ -1020,7 +749,7 @@
         }
         slideIndex++;
         if (slideIndex > slides.length) slideIndex = 1;
-        slides[slideIndex - 1].style.display = "block";
+        if (slides[slideIndex - 1]) slides[slideIndex - 1].style.display = "block";
         setTimeout(showSlides, 3000);
     }
 </script>
@@ -1029,26 +758,26 @@
     // Check Winner Script
     function updateDateTime() {
         const now = new Date();
-        const options = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit', 
-            timeZone: 'Asia/Kolkata' 
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'Asia/Kolkata'
         };
-        // Note: No element to update, but kept as per original
+        // kept as original (no element update required)
     }
 
     function updateCountdown() {
         const now = new Date();
         const nowIST = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-        
+
         const target = new Date(nowIST);
-        target.setHours(15, 0, 0, 0); 
-        
+        target.setHours(15, 0, 0, 0);
+
         if (nowIST > target) {
             target.setDate(target.getDate() + 1);
         }
@@ -1058,7 +787,7 @@
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // Note: No element to update, but kept as per original
+        // kept as original (no element update required)
     }
 
     updateDateTime();
@@ -1071,7 +800,7 @@
     function showResults() {
         const lotteryId = document.getElementById('lotteryId').value;
         const resultDiv = document.getElementById('result');
-        
+
         if (!lotteryId.trim()) {
             alert('Please enter a valid Lottery ID');
             return;
@@ -1087,16 +816,18 @@
     let isPlaying=true;
 
     function pauseAnimation(){
-    track.style.animationPlayState='paused';
+    if(track) track.style.animationPlayState='paused';
     isPlaying=false;
     }
     function playAnimation(){
-    track.style.animationPlayState='running';
+    if(track) track.style.animationPlayState='running';
     isPlaying=true;
     }
 
-    track.addEventListener('mouseenter',()=>{if(isPlaying)pauseAnimation()});
-    track.addEventListener('mouseleave',()=>{if(!isPlaying)playAnimation()});
+    if(track){
+      track.addEventListener('mouseenter',()=>{if(isPlaying)pauseAnimation()});
+      track.addEventListener('mouseleave',()=>{if(!isPlaying)playAnimation()});
+    }
 
     function randomTimestamp(){
     const m=Math.floor(Math.random()*300);
@@ -1107,13 +838,16 @@
 
     function updateTimestamps(){
     document.querySelectorAll('.timestamp').forEach(ts=>{
-    ts.textContent=randomTimestamp();
+      ts.textContent=randomTimestamp();
     });
     }
 
     function adjustWidth(){
     const cards=document.querySelectorAll('.feedback-card');
-    track.style.width=(cards.length*350)+"px";
+    if(track && cards.length){
+      // set width big enough to allow smooth scroll; keep safe value for responsiveness
+      track.style.width=(cards.length*340)+"px";
+    }
     }
 
     adjustWidth();
