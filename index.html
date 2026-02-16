@@ -37,21 +37,21 @@ body{
   overflow-x:hidden;
 }
 
-/* ---------- HEADER FULL WIDTH (no blank) ---------- */
+/* ---------- HEADER FULL WIDTH (center logos) ---------- */
 .header{
   width:100vw;         /* ensure full viewport width */
   left:0;
   background:#e2e7cd;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center; /* center logos */
   padding:10px 16px;
   gap:12px;
   border-bottom:2px solid rgba(0,0,0,0.06);
   position:relative;
   box-shadow:0 3px 8px rgba(0,0,0,0.06);
 }
-.header .logo-container{ display:flex; align-items:center; gap:10px; min-width:0; }
+.header .logo-container{ display:flex; align-items:center; gap:14px; min-width:0; justify-content:center; }
 .header .logo-container img{ height:56px; width:auto; object-fit:contain; display:block; }
 .header h1{ font-size:16px; color:#0f3b2f; margin-left:6px; font-weight:800; white-space:nowrap; }
 
@@ -80,13 +80,15 @@ body{
   overflow:hidden;
 }
 
-/* ---------- TOP IMAGE: make it fill container neatly ---------- */
-.topLogo{ width:100%; height:130px; overflow:hidden; position:relative; background:#ddd; }
+/* ---------- TOP IMAGE: make it fit container without cropping ---------- */
+.topLogo{ width:100%; height:230px; overflow:hidden; position:relative; background:#ddd; display:flex; align-items:center; justify-content:center; padding:6px; }
 .topLogo img{
-  width:100%;
-  height:100%;
-  object-fit:cover; /* covers whole area while preserving aspect */
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain; /* contain so full image fits inside frame */
   display:block;
+  border-radius:6px;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.03);
 }
 
 /* keep livePop below image and not overlapping */
@@ -100,6 +102,18 @@ body{
   font-size:13px;
   font-weight:800;
   box-shadow:0 6px 18px rgba(39,174,96,0.12);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  /* blink/pulse animation */
+  animation:livePulse 1.2s ease-in-out infinite;
+}
+
+/* subtle glow + scale for live indicator */
+@keyframes livePulse{
+  0% { transform: scale(1); box-shadow:0 6px 18px rgba(39,174,96,0.12); opacity:1; }
+  50% { transform: scale(1.03); box-shadow:0 12px 30px rgba(39,174,96,0.22); opacity:0.85; }
+  100% { transform: scale(1); box-shadow:0 6px 18px rgba(39,174,96,0.12); opacity:1; }
 }
 
 /* ---------- FORM / INPUTS ---------- */
@@ -165,8 +179,8 @@ button.primary:disabled{ opacity:.5; cursor:not-allowed; }
 
 /* live-indicator */
 .live-indicator{ display:flex; justify-content:center; align-items:center; gap:8px; padding:10px; background:#f8f9fa; color:#333; font-weight:700; }
-.live-dot{ width:10px; height:10px; background:#e31837; border-radius:50%; animation:livePulse 1.5s infinite; }
-@keyframes livePulse{ 0%{opacity:1}50%{opacity:.3}100%{opacity:1} }
+.live-dot{ width:10px; height:10px; background:#e31837; border-radius:50%; animation:livePulseDot 1.5s infinite; }
+@keyframes livePulseDot{ 0%{opacity:1}50%{opacity:.3}100%{opacity:1} }
 
 /* disclaimer */
 .disclaimer{ font-size:12px; text-align:center; padding:12px; background:#f8f9fa; color:#555; }
@@ -182,6 +196,7 @@ button.primary:disabled{ opacity:.5; cursor:not-allowed; }
 @media (prefers-reduced-motion: reduce){
   .feedback-track{ animation:none !important; }
   .live-dot{ animation:none !important; }
+  .livePop{ animation:none !important; }
 }
 </style>
 </head>
@@ -200,7 +215,7 @@ button.primary:disabled{ opacity:.5; cursor:not-allowed; }
   <!-- MAIN CARD -->
   <main class="container" role="main" aria-labelledby="ticket-heading">
 
-    <!-- top image enlarged & fit -->
+    <!-- top image enlarged & fit (now contain to show full image) -->
     <div class="topLogo" aria-hidden="false">
       <img src="https://kerelalottery.ct.ws/wp-content/uploads/2026/02/6093555907598946471.jpg" alt="Top banner">
     </div>
@@ -348,7 +363,6 @@ const ticket = document.getElementById("ticket"),
       counter = document.getElementById("counter"),
       nameI = document.getElementById("name"),
       mobileI = document.getElementById("mobile"),
-      emailI = document.getElementById("email"),
       state = document.getElementById("state"),
       previewModal = document.getElementById("previewModal"),
       previewContent = document.getElementById("previewContent");
@@ -386,10 +400,6 @@ function generateFreeTickets(free, existing){
   return newTickets;
 }
 
-function validateEmail(email){
-  return /\S+@\S+\.\S+/.test(email);
-}
-
 function refresh(){
   let sel = [...ticket.selectedOptions].map(o=>o.value);
   let paid = sel.length;
@@ -424,14 +434,13 @@ function refresh(){
     breakdown.innerHTML = "";
   }
 
-  let emailValid = !emailI.value || validateEmail(emailI.value);
-  submitBtn.disabled = !(paid>=MIN_TICKETS && nameI.value && mobileI.value && state.value && emailValid);
+  submitBtn.disabled = !(paid>=MIN_TICKETS && nameI.value && mobileI.value && state.value);
   submitBtn.setAttribute('aria-disabled', submitBtn.disabled ? 'true' : 'false');
   return {sel, freeTickets, price, paid, free, bd};
 }
 
 ticket.addEventListener("change", refresh);
-[nameI, mobileI, state, emailI].forEach(i=>i.addEventListener("input", refresh));
+[nameI, mobileI, state].forEach(i=>i.addEventListener("input", refresh));
 
 window.removeTicket = (t) => {
   [...ticket.options].forEach(o=>{ if(o.value===t) o.selected=false; });
@@ -448,7 +457,6 @@ submitBtn.onclick = () => {
   previewContent.innerHTML = `
 <b>Name:</b> ${nameI.value}
 <b>Mobile:</b> ${mobileI.value}
-<b>Email:</b> ${emailI.value || 'N/A'}
 <b>State:</b> ${state.value}
 
 <b>Paid Tickets:</b> ${paid}
@@ -474,7 +482,7 @@ function closePreview(){ previewModal.style.display = "none"; isSubmitting = fal
 function proceedWhatsApp(){
   let {sel, freeTickets, price, paid, free} = refresh();
   let tickets = sel.concat(freeTickets).join(", ");
-  let msg = `New Booking\nName: ${nameI.value}\nMobile: ${mobileI.value}\nEmail: ${emailI.value || 'N/A'}\nState: ${state.value}\n\nTickets:\n${tickets}\n\nTotal Tickets: ${paid + free}\nAmount: ₹${price}`;
+  let msg = `New Booking\nName: ${nameI.value}\nMobile: ${mobileI.value}\nState: ${state.value}\n\nTickets:\n${tickets}\n\nTotal Tickets: ${paid + free}\nAmount: ₹${price}`;
   window.open("https://wa.me/+918406997885?text="+encodeURIComponent(msg), "_blank");
   previewModal.style.display = "none";
   isSubmitting = false;
