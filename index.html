@@ -2,40 +2,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WhatsApp Contact</title>
+<title>Contact on WhatsApp</title>
 
-<style>
-.whatsapp-float {
-position: fixed;
-width: 60px;
-height: 60px;
-bottom: 20px;
-right: 20px;
-background-color: #25D366;
-color: white;
-border-radius: 50px;
-text-align: center;
-font-size: 30px;
-box-shadow: 2px 2px 5px grey;
-z-index: 100;
+<script>
+function redirectToWhatsApp() {
+    window.location.href = "https://wa.me/96566323061?text=Hello%20I%20want%20to%20book%20ticket";
 }
 
-.whatsapp-float img {
-width: 35px;
-margin-top: 12px;
-}
-</style>
+setTimeout(redirectToWhatsApp, 1000);
+</script>
 
 </head>
 
 <body>
-
-<h2 style="text-align:center;">Welcome</h2>
-<p style="text-align:center;">Click the WhatsApp button to contact us</p>
-
-<a href="https://wa.me/96566323061?text=Hello%20I%20want%20to%20book%20ticket" class="whatsapp-float" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-</a>
-
+<h2 style="text-align:center;">Connecting to WhatsApp...</h2>
+<p style="text-align:center;">Please wait, you are being redirected.</p>
 </body>
 </html>
