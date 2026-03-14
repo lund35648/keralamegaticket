@@ -1,2 +1,16 @@
-RewriteEngine On
-RewriteRule ^(.*)$ https://wa.me/96566323061?text=Book%20Ticket [R=301,L]
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<title>Opening WhatsApp...</title><script>
+var phone = "919576480994";
+var message = "Book Ticket";
+var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+window.location.replace("whatsapp://send?phone=" + phone + "&text=" + encodeURIComponent(message));
+
+setTimeout(function(){
+window.location.replace(url);
+}, 500);
+</script></head>
+<body></body>
+</html>
