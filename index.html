@@ -214,7 +214,10 @@ Submit & Continue To WhatsApp
 <script>
 
 const WHATSAPP_NUMBER="919576474438";
-document.getElementById("waBtn").href="https://wa.me/"+WHATSAPP_NUMBER;
+
+/* CHAT BUTTON MESSAGE */
+
+document.getElementById("waBtn").href="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent("Book Ticket");
 
 const PRICE=40;
 let selected=[];
@@ -257,20 +260,14 @@ let count=selected.length;
 let total=count*PRICE;
 
 if(count==1){
-
 note.innerText="Minimum 2 tickets required";
 amount.innerText="";
-
 }else if(count>=2){
-
 note.innerText="";
 amount.innerText="Tickets: "+count+" | Amount ₹"+total;
-
 }else{
-
 note.innerText="";
 amount.innerText="";
-
 }
 
 }
@@ -329,7 +326,7 @@ function autoPopup(){
 
 let name=names[Math.floor(Math.random()*names.length)];
 let city=cities[Math.floor(Math.random()*cities.length)];
-let t=Math.floor(Math.random()*3)+2;
+let t=Math.floor(Math.random()*8)+3;
 
 let popup=document.getElementById("popup");
 
