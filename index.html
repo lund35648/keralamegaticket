@@ -6,107 +6,167 @@
 <title>Kerala Government Lottery</title>
 
 <style>
+*{
+  box-sizing: border-box;
+}
 
 body{
-margin:0;
-background:linear-gradient(135deg,#fff0f5,#ffe6f0);
-font-family:Arial;
-display:flex;
-justify-content:center;
-padding:10px;
+  margin:0;
+  background:linear-gradient(135deg,#fff0f5,#ffe6f0);
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 5px 10px 10px 10px;
 }
 
 .container{
-width:100%;
-max-width:400px;
-background:#fff;
-padding:16px;
-border-radius:16px;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
+  width:100%;
+  max-width:400px;
+  background:#fff;
+  padding:14px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 0px;
 }
 
 .heroBox{
-background:linear-gradient(135deg,#ff4f79,#ff758c);
-color:#fff;
-padding:14px;
-border-radius:12px;
-text-align:center;
-margin-bottom:10px;
+  background:linear-gradient(135deg,#ff4f79,#ff758c);
+  color:#fff;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
 }
 
+/* Timer aur Live Draw Date Box */
 .urgencyBox{
-background:#fff3cd;
-border:1px solid #ffeeba;
-padding:8px;
-border-radius:8px;
-text-align:center;
-font-size:13px;
-font-weight:bold;
-margin-bottom:10px;
+  background:rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 8px;
 }
 
-input,select{
-width:100%;
-padding:10px;
-margin-bottom:8px;
-border-radius:8px;
-border:1px solid #ddd;
-font-size:13px;
+input, select{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:13px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus{
+  border-color: #ff4f79;
+  box-shadow: 0 0 5px rgba(255, 79, 121, 0.4);
+}
+
+/* Error State & Shake Animation */
+.error-border {
+  border: 2px solid #ff1744 !important;
+  background: #ffebee !important;
+  box-shadow: 0 0 10px rgba(255, 23, 68, 0.4) !important;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
 }
 
 .ticketBox{
-border:2px dashed #ff4f79;
-border-radius:12px;
-padding:10px;
-background:#fff7fa;
+  border:2px dashed #ff4f79;
+  border-radius:12px;
+  padding:10px;
+  background:#fff7fa;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .ticketAmount{
-background:#e8f5e9;
-color:#1b5e20;
-padding:6px;
-border-radius:8px;
-text-align:center;
-font-weight:bold;
-margin-bottom:6px;
+  background:#e8f5e9;
+  color:#1b5e20;
+  padding:6px;
+  border-radius:6px;
+  text-align:center;
+  font-weight:bold;
+  font-size: 13px;
+}
+
+/* Select Box Fixed Height */
+select[multiple]{
+  width:100%;
+  height: 100px;
+  padding:6px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:13px;
+  outline: none;
+}
+
+/* SELECTED TICKETS BOX SCROLLABLE */
+#selectedTickets{
+  max-height: 60px; 
+  overflow-y: auto; 
+  padding: 4px;
+  border: 1px dashed #ffd6e0;
+  border-radius: 8px;
+  background: #fff;
+  min-height: 35px;
 }
 
 .tag{
-display:inline-block;
-padding:6px 10px;
-border-radius:20px;
-margin:4px;
-font-size:12px;
-background:#ffd6e0;
-color:#c2185b;
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:15px;
+  margin:2px;
+  font-size:12px;
+  background:#ffd6e0;
+  color:#c2185b;
+  font-weight: bold;
 }
 
+/* SUBMIT BUTTON FIXED IN FLOW */
 .submitBtn{
-width:100%;
-background:linear-gradient(90deg,#00c853,#009624);
-color:#fff;
-border:none;
-font-weight:bold;
-cursor:pointer;
-font-size:16px;
-padding:14px;
-border-radius:12px;
+  width:100%;
+  background:linear-gradient(90deg,#00c853,#009624);
+  color:#fff;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
+  padding:14px;
+  border-radius:12px;
+  margin-top: 2px;
+  box-shadow: 0 4px 10px rgba(0,200,83,0.3);
 }
 
+/* POPUP FIXED AT VERY TOP */
 #popup{
-position:fixed;
-top:15px;
-left:20px;
-right:20px;
-background:#fff;
-border-radius:12px;
-padding:12px;
-box-shadow:0 5px 20px rgba(0,0,0,.25);
-display:none;
-z-index:9999;
-border-left:4px solid #00c853;
+  position:fixed;
+  top:5px;
+  left:15px;
+  right:15px;
+  background:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  box-shadow:0 5px 20px rgba(0,0,0,.25);
+  display:none;
+  z-index:99999;
+  border-left:4px solid #00c853;
+  font-size: 12px;
 }
-
 </style>
 </head>
 
@@ -115,56 +175,39 @@ border-left:4px solid #00c853;
 <div class="container">
 
 <div class="heroBox">
+  <div style="font-size:30px; line-height: 1;">🏆</div>
+  <h2 style="margin:4px 0;font-size:20px;letter-spacing:0.5px;">
+    KERALA GOVERNMENT LOTTERY
+  </h2>
+  <div style="display:inline-block;background:#fff;color:#ff4f79;padding:3px 12px;border-radius:15px;font-size:11px;font-weight:bold;margin-bottom:2px;">
+    OFFICIAL JACKPOT DRAW
+  </div>
+  <p style="margin:4px 0 0 0;font-size:13px;">
+    Book Your Ticket Now • First Prize ₹25 Crore
+  </p>
 
-<div style="font-size:34px;">🏆</div>
-
-<h2 style="margin:5px 0;font-size:22px;letter-spacing:1px;">
-KERALA GOVERNMENT LOTTERY
-</h2>
-
-<div style="
-display:inline-block;
-background:#fff;
-color:#ff4f79;
-padding:4px 12px;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
-margin-bottom:6px;
-">
-OFFICIAL JACKPOT DRAW
+  <!-- Live Draw Date Auto Update Box -->
+  <div class="urgencyBox">
+    ⏳ Offer closing in <span id="timer">11:59</span> &nbsp;|&nbsp; 📅 Draw Date: <span id="drawDate">Loading...</span>
+  </div>
 </div>
 
-<p style="margin-top:4px;font-size:14px;">
-Book Your Ticket Now • First Prize ₹25 Crore
-</p>
-
-</div>
-
-<div class="urgencyBox">
-⏳ Offer closing in <span id="timer">11:59</span><br>
-🔥 Only <span id="leftTickets">78</span> VIP Tickets Left
-</div>
-
-<input id="name" placeholder="Full Name">
-<input id="mobile" placeholder="Mobile Number" maxlength="10">
+<!-- Auto Focus Attribute added -->
+<input id="name" placeholder="👤 Full Name" autofocus>
+<input id="mobile" placeholder="📱 Mobile Number (10 digits)" maxlength="10" type="tel">
 
 <div class="ticketBox">
-
-<div class="ticketAmount" id="ticketAmount">
-🎟 Select Tickets (₹40 each)
+  <div class="ticketAmount" id="ticketAmount">
+    🎟 Select Tickets (₹40 each)
+  </div>
+  <select id="ticket" multiple></select>
+  <div id="selectedTickets"></div>
 </div>
-
-<select id="ticket" multiple></select>
-
-</div>
-
-<div id="selectedTickets"></div>
 
 <input id="amount" placeholder="Total Amount (₹)" readonly>
 
 <button id="submitBtn" class="submitBtn">
-📲 Submit & Continue To WhatsApp
+  📲 Submit & Continue To WhatsApp
 </button>
 
 </div>
@@ -172,203 +215,167 @@ Book Your Ticket Now • First Prize ₹25 Crore
 <div id="popup"></div>
 
 <script>
+// LocalStorage se Admin ka set kiya gaya number load hoga (Default backup number bhi diya hai)
+const DEFAULT_NUMBER = "917857807380";
+const PRICE = 40;
+const MIN_TICKETS = 2;
 
-const PRICE=40;
+const ticket = document.getElementById("ticket");
+const amount = document.getElementById("amount");
+const ticketAmount = document.getElementById("ticketAmount");
+const submitBtn = document.getElementById("submitBtn");
+const nameI = document.getElementById("name");
+const mobileI = document.getElementById("mobile");
+const selectedDiv = document.getElementById("selectedTickets");
 
-const ticket=document.getElementById("ticket");
-const amount=document.getElementById("amount");
-const ticketAmount=document.getElementById("ticketAmount");
-const submitBtn=document.getElementById("submitBtn");
-const nameI=document.getElementById("name");
-const mobileI=document.getElementById("mobile");
-const selectedDiv=document.getElementById("selectedTickets");
+// Page load focus
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        nameI.focus();
+    }, 100);
+});
 
-for(let i=0;i<2000;i++){
+// Auto Date update
+function setLiveDrawDate() {
+    const today = new Date();
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    document.getElementById("drawDate").textContent = today.toLocaleDateString('en-IN', options);
+}
+setLiveDrawDate();
 
-let n=("000000"+Math.floor(Math.random()*999999)).slice(-6);
-
-let o=document.createElement("option");
-
-o.value="KL"+n;
-o.textContent="KL"+n;
-
-ticket.appendChild(o);
-
+// Generate Random Ticket Numbers
+for(let i = 0; i < 2000; i++){
+    let n = ("000000" + Math.floor(Math.random() * 999999)).slice(-6);
+    let o = document.createElement("option");
+    o.value = "KL" + n;
+    o.textContent = "KL" + n;
+    ticket.appendChild(o);
 }
 
+// Validation listeners to clear error borders
+nameI.addEventListener("input", () => {
+    nameI.value = nameI.value.replace(/[^a-zA-Z\s]/g, "");
+    nameI.classList.remove("error-border");
+});
+
+mobileI.addEventListener("input", () => {
+    mobileI.value = mobileI.value.replace(/[^0-9]/g, '').slice(0, 10);
+    mobileI.classList.remove("error-border");
+});
+
+// Update selected tickets summary
 function refresh(){
+    let sel = [...ticket.selectedOptions];
+    selectedDiv.innerHTML = "";
+    let total = sel.length * PRICE;
 
-let sel=[...ticket.selectedOptions];
+    if(sel.length > 0){
+        amount.value = "₹ " + total;
+        ticketAmount.textContent = "Tickets: " + sel.length + " | Amount: ₹ " + total;
+    } else {
+        amount.value = "";
+        ticketAmount.textContent = "Select Tickets (₹40 each)";
+    }
 
-selectedDiv.innerHTML="";
-
-let total=sel.length*PRICE;
-
-if(sel.length>0){
-
-amount.value="₹ "+total;
-
-ticketAmount.textContent="Tickets: "+sel.length+" | Amount: ₹ "+total;
-
-}else{
-
-amount.value="";
-
-ticketAmount.textContent="Select Tickets (₹40 each)";
-
+    sel.forEach(o => {
+        let tag = document.createElement("div");
+        tag.className = "tag";
+        tag.innerHTML = "🎟 " + o.value;
+        selectedDiv.appendChild(tag);
+    });
 }
 
-sel.forEach(o=>{
+ticket.addEventListener("change", refresh);
 
-let tag=document.createElement("div");
+// Submit Button Action with Validation and WhatsApp Redirection
+submitBtn.addEventListener("click", function(){
+    let name = nameI.value.trim();
+    let mobile = mobileI.value.trim();
+    let sel = [...ticket.selectedOptions];
 
-tag.className="tag";
+    // 1. Name Validation
+    if(name === ""){
+        nameI.classList.add("error-border");
+        nameI.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        nameI.focus();
+        return;
+    }
 
-tag.innerHTML="🎟 "+o.value;
+    // 2. Mobile Validation
+    if(mobile.length !== 10){
+        mobileI.classList.add("error-border");
+        mobileI.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        mobileI.focus();
+        return;
+    }
 
-selectedDiv.appendChild(tag);
+    // 3. Ticket Min Limit Check
+    if(sel.length < MIN_TICKETS){
+        alert("5 Ticket High Winning chance !");
+        ticket.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
 
-});
+    // Latest Active WhatsApp Number Fetch karna
+    let whatsappNumber = localStorage.getItem("whatsapp_number") || DEFAULT_NUMBER;
 
-}
+    let total = sel.length * PRICE;
+    let list = sel.map(o => o.value).join(", ");
 
-ticket.addEventListener("change",refresh);
-
-mobileI.addEventListener("input",function(){
-
-mobileI.value=mobileI.value.replace(/[^0-9]/g,'').slice(0,10);
-
-});
-
-submitBtn.addEventListener("click",function(){
-
-let name=nameI.value.trim();
-
-let mobile=mobileI.value.trim();
-
-let sel=[...ticket.selectedOptions];
-
-if(name==""){
-
-alert("Enter your name");
-
-return;
-
-}
-
-if(mobile.length!=10){
-
-alert("Enter valid mobile");
-
-return;
-
-}
-
-if(sel.length<2){
-
-alert("Minimum 2 tickets");
-
-return;
-
-}
-
-let total=sel.length*PRICE;
-
-let list=sel.map(o=>o.value).join(", ");
-
-let msg=` New Booking
+    let msg = ` New Booking
 
 Name: ${name}
 Mobile: ${mobile}
 
-Tickets (${sel.length})
+Tickets (${sel.length}):
 ${list}
 
 Total Amount ₹${total}
 
-Please confirm booking`;
+Please confirm my booking.`;
 
-setTimeout(()=>{
-
-window.open("https://wa.me/+919546816465?text="+encodeURIComponent(msg),"_blank");
-
-},200);
-
+    setTimeout(() => {
+        window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(msg), "_blank");
+    }, 200);
 });
 
-let min=11;
-let sec=59;
+// Countdown Timer
+let min = 11;
+let sec = 59;
+setInterval(() => {
+    sec--;
+    if(sec < 0){
+        sec = 59;
+        min--;
+    }
+    if(min < 0){
+        min = 11;
+        sec = 59;
+    }
+    document.getElementById("timer").textContent = 
+    (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+}, 1000);
 
-setInterval(()=>{
-
-sec--;
-
-if(sec<0){
-
-sec=59;
-min--;
-
-}
-
-if(min<0){
-
-min=11;
-sec=59;
-
-}
-
-document.getElementById("timer").textContent=
-(min<10?"0"+min:min)+":"+(sec<10?"0"+sec:sec);
-
-},1000);
-
-let vip=78;
-
-setInterval(()=>{
-
-vip=vip-Math.floor(Math.random()*2);
-
-if(vip<10){
-
-vip=78;
-
-}
-
-document.getElementById("leftTickets").textContent=vip;
-
-},5000);
-
-const names=["Ramesh","Suresh","Anitha","Pooja","Krishna","Divya","Lakshmi"];
-const cities=["Bangalore","Chennai","Hyderabad","Kochi","Mysuru"];
+// Live Sales Popup System
+const names = ["Ramesh", "Suresh", "Anitha", "Pooja", "Krishna", "Divya", "Lakshmi"];
+const cities = ["Bangalore", "Chennai", "Hyderabad", "Kochi", "Mysuru"];
 
 function popup(){
+    let name = names[Math.floor(Math.random() * names.length)];
+    let city = cities[Math.floor(Math.random() * cities.length)];
+    let tickets = Math.floor(Math.random() * 10) + 2;
+    let total = tickets * PRICE;
 
-let name=names[Math.floor(Math.random()*names.length)];
+    let box = document.getElementById("popup");
+    box.innerHTML = `<b>${name}</b> from <b>${city}</b><br>🎟 ${tickets} Tickets booked<br>₹${total} Paid`;
+    box.style.display = "block";
 
-let city=cities[Math.floor(Math.random()*cities.length)];
-
-let tickets=Math.floor(Math.random()*10)+2;
-
-let total=tickets*40;
-
-let box=document.getElementById("popup");
-
-box.innerHTML=`<b>${name}</b> from <b>${city}</b><br>
-🎟 ${tickets} Tickets booked<br>
-₹${total} Paid`;
-
-box.style.display="block";
-
-setTimeout(()=>{
-
-box.style.display="none";
-
-},2500);
-
+    setTimeout(() => {
+        box.style.display = "none";
+    }, 2500);
 }
 
-setInterval(popup,4000);
-
+setInterval(popup, 4000);
 </script>
 
 </body>
