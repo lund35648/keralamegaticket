@@ -215,8 +215,11 @@ select[multiple]{
 <div id="popup"></div>
 
 <script>
-// LocalStorage se Admin ka set kiya gaya number load hoga (Default backup number bhi diya hai)
-const DEFAULT_NUMBER = "919576714697";
+// ==========================================
+// 🔴 YAHAN APNA WHATSAPP NUMBER BADLEIN 🔴
+// ==========================================
+const WHATSAPP_NUMBER = "917857807380"; 
+
 const PRICE = 40;
 const MIN_TICKETS = 2;
 
@@ -316,9 +319,6 @@ submitBtn.addEventListener("click", function(){
         return;
     }
 
-    // Latest Active WhatsApp Number Fetch karna
-    let whatsappNumber = localStorage.getItem("whatsapp_number") || DEFAULT_NUMBER;
-
     let total = sel.length * PRICE;
     let list = sel.map(o => o.value).join(", ");
 
@@ -335,7 +335,7 @@ Total Amount ₹${total}
 Please confirm my booking.`;
 
     setTimeout(() => {
-        window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(msg), "_blank");
+        window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank");
     }, 200);
 });
 
